@@ -22,35 +22,35 @@ export class AttendanceRoutes {
     // Crear múltiples registros de asistencia
     router.post(
       "/create",
-      // AuthMiddleware.validateAdminToken,
+      AuthMiddleware.validateAdminToken,
       attendanceController.create.bind(attendanceController)
     );
 
     // Actualizar un registro de asistencia por ID
     router.put(
       "/:id",
-      // AuthMiddleware.validateAdminToken,
+      AuthMiddleware.validateAdminToken,
       attendanceController.update.bind(attendanceController)
     );
 
     // Eliminar registros de asistencia por fecha
     router.delete(
       "/delete-by-date",
-      // AuthMiddleware.validateAdminToken,
+      AuthMiddleware.validateAdminToken,
       attendanceController.deleteByDate.bind(attendanceController)
     );
 
     // Obtener todos los registros de asistencia por una fecha específica
     router.get(
       "/by-date/:date",
-      // AuthMiddleware.validateAdminToken,
+      AuthMiddleware.validateAdminToken,
       attendanceController.getByDate.bind(attendanceController)
     );
 
     // Obtener todas las fechas de asistencia distintas
     router.get(
       "/distinct-dates",
-      // AuthMiddleware.validateAdminToken,
+      AuthMiddleware.validateAdminToken,
       attendanceController.getDistinctDatesMethod.bind(attendanceController)
     );
 

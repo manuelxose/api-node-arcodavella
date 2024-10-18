@@ -2,7 +2,7 @@
 
 import { Request, Response, NextFunction } from "express";
 import logger from "../../core/adapters/logger";
-import { SendEmailDTO, SendBulkEmailDTO } from "../../domain/dtos/email";
+import { SendEmailDTO } from "../../domain/dtos/email";
 import { CustomError } from "../../domain/errors";
 import { SendEmailUseCase } from "../../application/use-cases/email/send-email.use-case";
 
@@ -29,7 +29,7 @@ export class EmailController {
     next: NextFunction
   ): Promise<Response | void> => {
     try {
-      console.log("Metodo de envio de emaail: ", req.body);
+      console.log("Metodo de envio de email: ", req.body);
       const { to, subject, bodyText, bodyHtml } = req.body;
 
       const sendEmailDTO: SendEmailDTO = { to, subject, bodyText, bodyHtml };
@@ -37,7 +37,7 @@ export class EmailController {
       await this.sendEmailUseCase.execute(sendEmailDTO);
       res.status(200).json({ message: "Email enviado con éxito" });
     } catch (error) {
-      this.handleError(error, res);
+      next(error); // Forward the error to the next middleware
     }
   };
 

@@ -190,7 +190,7 @@ export class MongoNotificationDataSource implements NotificationDataSource {
         createdAt: notification.createdAt,
         updatedAt: notification.updatedAt,
       });
-    } catch (error) {
+    } catch {
       throw CustomError.internal("Error retrieving notification");
     }
   }
@@ -261,7 +261,7 @@ export class MongoNotificationDataSource implements NotificationDataSource {
           updatedAt: notification.updatedAt,
         })
       );
-    } catch (error) {
+    } catch {
       throw CustomError.internal("Error retrieving all notifications");
     }
   }

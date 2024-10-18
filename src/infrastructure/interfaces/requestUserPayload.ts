@@ -1,19 +1,17 @@
-// src/infrastructure/interfaces/requestUserPayload.ts
-
+// Define your user payload interface
 export interface RequestUserPayload {
   username: string;
   role: string;
   email: string;
-  // Añade otros campos que consideres necesarios
+  // Add other fields as necessary
 }
 
-declare global {
-  namespace Express {
-    interface Request {
-      user?: RequestUserPayload; // Información del usuario autenticado
-      loginCount?: number; // Número total de inicios de sesión
-    }
+// Augment the Express Request interface
+declare module "express-serve-static-core" {
+  interface Request {
+    user?: RequestUserPayload; // Information about the authenticated user
+    loginCount?: number; // Total number of logins
   }
 }
 
-export {}; // Asegura que este archivo sea tratado como un módulo
+export {}; // Ensure this file is treated as an ES module

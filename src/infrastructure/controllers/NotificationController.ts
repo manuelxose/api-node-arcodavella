@@ -16,7 +16,6 @@ import {
 } from "../../application/use-cases/notifications";
 import { CustomError } from "../../domain/errors";
 import logger from "../../core/adapters/logger";
-import { Console } from "console";
 import { ZlibAdapter } from "../../core/adapters/zlib";
 import { SendBulkEmailDTO } from "../../domain/dtos/email";
 import { SendBulkNotificationsUseCase } from "../../application/use-cases/notifications/sendBulkNotifications.use-case";
@@ -65,7 +64,11 @@ export class NotificationController {
   }
 
   // Método para crear una notificación
-  async create(req: Request, res: Response, next: NextFunction): Promise<any> {
+  async create(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | void> {
     try {
       const { data } = req.body;
       console.log("los datos:", data);
@@ -86,7 +89,11 @@ export class NotificationController {
   }
 
   // Método para obtener todas las notificaciones de un destinatario específico
-  async get(req: Request, res: Response, next: NextFunction): Promise<any> {
+  async get(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | void> {
     const [error, getNotificationDTO] = GetNotificationByIdDTO.create({
       id: req.params.id,
     });
@@ -94,17 +101,21 @@ export class NotificationController {
       return res.status(400).send({ error: error.message });
     }
 
-    this.getNotification
-      .execute(getNotificationDTO!)
-      .then((member) => {
-        if (!member) {
-          return res.status(404).send({ error: "Member not found" });
-        }
-        res.status(200).send(member);
-      })
-      .catch((error) => {
-        this.handleError(error, res);
-      });
+    try {
+      this.getNotification
+        .execute(getNotificationDTO!)
+        .then((member) => {
+          if (!member) {
+            return res.status(404).send({ error: "Member not found" });
+          }
+          res.status(200).send(member);
+        })
+        .catch((error) => {
+          this.handleError(error, res);
+        });
+    } catch (error) {
+      next(error);
+    }
   }
 
   // Método para obtener todas las notificaciones
@@ -118,7 +129,11 @@ export class NotificationController {
   }
 
   // Método para actualizar el estado de una notificación
-  async update(req: Request, res: Response, next: NextFunction): Promise<any> {
+  async update(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | void> {
     console.log("los datos enviados: ", req.body);
 
     try {
@@ -140,7 +155,11 @@ export class NotificationController {
   }
 
   // Método para eliminar una notificación por su ID
-  async delete(req: Request, res: Response, next: NextFunction): Promise<any> {
+  async delete(
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | void> {
     try {
       const [error, deleteNotificationDTO] = DeleteNotificationDTO.create({
         id: req.params.id,
@@ -165,7 +184,7 @@ export class NotificationController {
     req: Request,
     res: Response,
     next: NextFunction
-  ): Promise<any> {
+  ): Promise<Response | void> {
     try {
       const chunks: Buffer[] = [];
       console.log("Entra en el método sendBulk");
@@ -238,9 +257,9 @@ export class NotificationController {
             );
             next(executionError);
           }
-        } catch (error: any) {
+        } catch (error: unknown) {
           console.error("Error al procesar los datos:", error);
-          res.status(400).send({ error: error.message });
+          res.status(400).send({ error: error });
         }
       });
 

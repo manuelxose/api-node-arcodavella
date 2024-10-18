@@ -8,8 +8,6 @@ export class GetActiveUser {
   async execute(
     getActiveUserDTO: GetActiveUserDTO
   ): Promise<UserEntity | null> {
-    const { userId } = getActiveUserDTO;
-
     try {
       const user = await this.authRepository.getActiveUser(getActiveUserDTO);
       if (user && user.role !== undefined) {

@@ -27,8 +27,11 @@ export class BcryptAdapter {
       }
 
       return hashedPassword;
-    } catch (error: any) {
-      throw new Error(`Failed to hash the password: ${error.message}`);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        throw new Error(`Failed to hash the password: ${error.message}`);
+      }
+      throw new Error(`Failed to hash the password: ${error}`);
     }
   }
 
@@ -42,8 +45,16 @@ export class BcryptAdapter {
   static compare(value: string, hash: string): boolean {
     try {
       return compareSync(value, hash);
-    } catch (error: any) {
-      throw new Error(`Failed to compare password and hash: ${error.message}`);
+    } catch (error) {
+      // Si la comparación falla, lanza un error
+
+      if (error instanceof Error) {
+        throw new Error(
+          `Failed to compare password and hash: ${error.message}`
+        );
+      } else {
+        throw new Error(`Failed to compare password and hash: ${error}`);
+      }
     }
   }
 }

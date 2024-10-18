@@ -6,7 +6,6 @@ import {
 import {
   LoginUserDTO,
   RegisterUserDTO,
-  ChangePasswordDTO,
   UpdateProfileDTO,
   GetActiveUserByEmailDTO,
 } from "../dtos/auth";

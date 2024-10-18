@@ -38,7 +38,7 @@ export class SendBulkEmailDTO {
     }>;
   }): [Error | null, SendBulkEmailDTO | null] {
     // Validación de que la lista de correos no esté vacía
-    if (!Validators.isNotEmpty(data.emails) || data.emails.length === 0) {
+    if (!data.emails || data.emails.length === 0) {
       return [new Error("At least one email is required"), null];
     }
 

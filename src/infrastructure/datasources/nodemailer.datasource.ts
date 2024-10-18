@@ -1,9 +1,12 @@
 import { EmailDataSource } from "../../domain/datasources";
 import { SendEmailDTO, SendBulkEmailDTO } from "../../domain/dtos/email";
-import { Transporter } from "nodemailer";
-import { EmailConfig } from "../../core/config/nodemailer.config";
 import { CustomError } from "../../domain/errors/custom.errors";
 import { env } from "../../core/config/env";
+import {
+  AttachmentOptions,
+  EmailOptions,
+  NodemailerAdapter,
+} from "../../core/adapters";
 
 /**
  * Implementación concreta de EmailDataSource usando Nodemailer.
@@ -11,50 +14,42 @@ import { env } from "../../core/config/env";
  * Proporciona métodos para enviar correos electrónicos individuales y en masa.
  */
 export class NodemailerEmailDataSource implements EmailDataSource {
-  private transporter: Transporter;
+  private emailAdapter: NodemailerAdapter;
 
   constructor() {
-    const emailConfig = EmailConfig.getInstance();
-    this.transporter = emailConfig.getTransporter();
+    this.emailAdapter = new NodemailerAdapter();
   }
 
   /**
-   * Envía un correo electrónico individual.
+   * Envía un correo electrónico individual utilizando el adaptador.
    * @param data - Datos del correo a enviar.
    */
   async sendEmail(data: SendEmailDTO): Promise<void> {
     try {
-      const mailOptions: any = {
-        // Usar any para evitar problemas de tipado temporal
+      console.log("Enviando correo a:", data.to);
+
+      // Convertir SendEmailDTO a EmailOptions
+      const emailOptions: EmailOptions = {
         from: `"Soporte" <${env.emailUser}>`,
         to: data.to,
         subject: data.subject,
         text: data.bodyText,
         html: data.bodyHtml,
         attachments: data.attachments?.map((att) => {
-          const attachment: any = {
+          const attachment: AttachmentOptions = {
             filename: att.filename,
-            cid: att.cid, // Content-ID para imágenes inline
+            cid: att.cid,
+            path: att.path,
+            content: att.content,
+            encoding: att.encoding,
+            contentType: att.contentType,
           };
-
-          if (att.path) {
-            attachment.path = att.path; // Ruta absoluta al archivo
-          }
-
-          if (att.content) {
-            attachment.content = att.content; // Contenido en base64
-            attachment.encoding = att.encoding;
-            attachment.contentType = att.contentType;
-          }
-
           return attachment;
         }),
       };
 
-      console.log("Enviando correo a:", data.to);
-
-      await this.transporter.sendMail(mailOptions);
-    } catch (error) {
+      await this.emailAdapter.sendEmail(emailOptions);
+    } catch (error: unknown) {
       if (error instanceof Error) {
         throw CustomError.internal(`Error al enviar correo: ${error.message}`);
       }
@@ -87,10 +82,15 @@ export class NodemailerEmailDataSource implements EmailDataSource {
         );
 
         // Enviar cada correo en el lote con reintentos
-        const sendPromises = batch.map((email) =>
-          this.sendEmailWithRetry(email, MAX_RETRIES, DELAY_BETWEEN_RETRIES_MS)
-            .then(() => ({ success: true, email }))
-            .catch((error: any) => ({ success: false, email, error }))
+        const sendPromises = batch.map(
+          (email) =>
+            this.sendEmailWithRetry(
+              email,
+              MAX_RETRIES,
+              DELAY_BETWEEN_RETRIES_MS
+            )
+              .then(() => ({ success: true, email }))
+              .catch((error: unknown) => ({ success: false, email, error })) // Use unknown instead of any
         );
 
         // Esperar a que se completen todos los envíos del lote
@@ -122,11 +122,15 @@ export class NodemailerEmailDataSource implements EmailDataSource {
       console.log(
         `Proceso de envío en masa completado. Correos enviados: ${sentEmails}`
       );
-    } catch (error: any) {
-      console.error(`Error al enviar correos en masa: ${error.message}`);
-      throw CustomError.internal(
-        `Failed to send bulk emails: ${error.message}`
-      );
+    } catch (error: unknown) {
+      // Use unknown for error
+      if (error instanceof Error) {
+        console.error(`Error al enviar correos en masa: ${error.message}`);
+        throw CustomError.internal(
+          `Failed to send bulk emails: ${error.message}`
+        );
+      }
+      throw CustomError.internal("Ocurrió un error inesperado.");
     }
   }
 
@@ -145,10 +149,13 @@ export class NodemailerEmailDataSource implements EmailDataSource {
       try {
         await this.sendEmail(data);
         return; // Salir si el envío es exitoso
-      } catch (error: any) {
-        console.error(
-          `Intento ${attempt} de ${retries} fallido para ${data.to}: ${error.message}`
-        );
+      } catch (error: unknown) {
+        // Use unknown for error
+        if (error instanceof Error) {
+          console.error(
+            `Intento ${attempt} de ${retries} fallido para ${data.to}: ${error.message}`
+          );
+        }
         if (attempt === retries) {
           throw error; // Re-lanzar el error si se agotaron los intentos
         }

@@ -1,9 +1,16 @@
-import { ImapAdapter } from "../../../core/adapters/imap";
+// src/infrastructure/datasources/MongoNotificationDataSource.ts
+
+import {
+  ImapAdapter,
+  SearchCriteria,
+  FetchOptions,
+} from "../../../core/adapters/imap"; // Importar los tipos
 import logger from "../../../core/adapters/logger";
 import { FetchContactsDTO } from "../../../domain/dtos/contact";
 import { ContactoEntity } from "../../../domain/entities/contact/ContactEntity";
 import { CustomError } from "../../../domain/errors";
 import { ContactoRepository } from "../../../domain/repositories/contact.repository";
+import { ImapSimple, Message } from "imap-simple"; // Importar el tipo Message
 
 export class FetchContactsUseCase {
   constructor(
@@ -14,15 +21,17 @@ export class FetchContactsUseCase {
   async execute(): Promise<void> {
     console.log("Se inicia la ejecución del caso de uso de FetchContacts");
 
-    const searchCriteria = [["FROM", "wordpress@arcodavella.gal"]];
+    const searchCriteria: SearchCriteria = [
+      ["FROM", "wordpress@arcodavella.gal"],
+    ];
 
-    const fetchOptions = {
+    const fetchOptions: FetchOptions = {
       bodies: [""], // Obtener el mensaje completo
       markSeen: false,
       maxMessages: 50, // Limitar a los primeros 50 correos
     };
 
-    let connection;
+    let connection: ImapSimple | undefined;
 
     try {
       console.log("Conectándose al servidor IMAP...");
@@ -34,7 +43,7 @@ export class FetchContactsUseCase {
       await connection.openBox("INBOX");
       console.log("Abierta la bandeja de entrada.");
 
-      let results;
+      let results: Message[];
       try {
         results = await this.imapAdapter.searchWithTimeout(
           connection,
@@ -42,10 +51,14 @@ export class FetchContactsUseCase {
           fetchOptions,
           20000 // Aumentar el timeout a 20 segundos si es necesario
         );
-      } catch (searchError: any) {
-        console.error(
-          `Error durante la búsqueda de correos: ${searchError.message}`
-        );
+      } catch (searchError: unknown) {
+        if (searchError instanceof Error) {
+          console.error(
+            `Error durante la búsqueda de correos: ${searchError.message}`
+          );
+        } else {
+          console.error(`Error durante la búsqueda de correos: ${searchError}`);
+        }
         return;
       }
 
@@ -59,7 +72,7 @@ export class FetchContactsUseCase {
         console.log(`Procesando correo #${index + 1} de ${results.length}`);
 
         try {
-          const all = item.parts.find((part: any) => part.which === "");
+          const all = item.parts.find((part) => part.which === "");
 
           if (!all || !all.body) {
             console.warn("El correo no contiene el cuerpo completo.");
@@ -116,12 +129,20 @@ export class FetchContactsUseCase {
           } else {
             logger.warn("Datos insuficientes para almacenar el contacto.");
           }
-        } catch (error: any) {
-          logger.error(`Error procesando el correo: ${error.message}`);
+        } catch (error: unknown) {
+          if (error instanceof Error) {
+            logger.error(`Error procesando el correo: ${error.message}`);
+          } else {
+            logger.error("Error procesando el correo: Error desconocido.");
+          }
         }
       }
-    } catch (error: any) {
-      logger.error(`Error al procesar los correos: ${error.message}`);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        logger.error(`Error al procesar los correos: ${error.message}`);
+      } else {
+        logger.error("Error al procesar los correos: Error desconocido.");
+      }
       throw CustomError.internal("Error al procesar los correos");
     } finally {
       // Asegurarse de cerrar la conexión en cualquier caso

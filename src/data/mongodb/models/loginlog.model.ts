@@ -1,8 +1,6 @@
 // src/infrastructure/models/LoginLogModel.ts
 
 import { Schema, model, Document, Types } from "mongoose";
-import { StatusCodes } from "../../../domain/enums";
-import { BcryptAdapter as bcrypt } from "../../../core/adapters"; // Asegúrate de que esta ruta sea correcta
 
 // Interfaz que define la estructura del documento de registro de login en MongoDB
 interface ILoginLog extends Document {

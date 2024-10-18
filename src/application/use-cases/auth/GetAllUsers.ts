@@ -1,10 +1,20 @@
 import { CustomError } from "../../../domain/errors";
 import { AuthRepository } from "../../../domain/repositories";
 
+interface GetAllSUsersResponse {
+  users: {
+    id: string;
+    name: string;
+    email: string;
+    dni: string;
+    memberNumber: string;
+  }[];
+}
+
 export class GetAllSUsers {
   constructor(private readonly authRepository: AuthRepository) {}
 
-  async execute(): Promise<any> {
+  async execute(): Promise<GetAllSUsersResponse> {
     // Fetch all users from the auth repository
     const users = await this.authRepository.getAll();
     if (!users) {

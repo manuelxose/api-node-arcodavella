@@ -51,7 +51,7 @@ export class AttendanceController {
     logger.error(error);
     return res.status(500).send({ error: "Internal server error" });
   }
-  public async create(req: Request, res: Response): Promise<any> {
+  public async create(req: Request, res: Response): Promise<Response | void> {
     // Crear los DTOs validados para todas las asistencias
     const [error, createAttendanceDTOs] = CreateAttendanceDTO.create(req.body);
     if (error) {
@@ -74,7 +74,7 @@ export class AttendanceController {
       });
   }
 
-  public async update(req: Request, res: Response): Promise<any> {
+  public async update(req: Request, res: Response): Promise<Response | void> {
     const [error, updateAttendanceDTO] = UpdateAttendanceDTO.create({
       id: req.params.id,
       ...req.body,
@@ -93,7 +93,10 @@ export class AttendanceController {
       });
   }
 
-  public async deleteByDate(req: Request, res: Response): Promise<any> {
+  public async deleteByDate(
+    req: Request,
+    res: Response
+  ): Promise<Response | void> {
     const [error, deleteAttendanceDTO] = DeleteAttendanceDTO.create(req.body);
     if (error) {
       return res.status(400).send({ error: error.message });
@@ -108,7 +111,10 @@ export class AttendanceController {
         this.handleError(error, res);
       });
   }
-  public async getByDate(req: Request, res: Response): Promise<any> {
+  public async getByDate(
+    req: Request,
+    res: Response
+  ): Promise<Response | void> {
     // Convertimos el string recibido desde req.params.date a un objeto Date
     const [error, getAttendanceByDateDTO] = GetAttendanceByDateDTO.create({
       date: req.params.date, // req.params.date llega como string
@@ -141,7 +147,7 @@ export class AttendanceController {
   public async getDistinctDatesMethod(
     _req: Request,
     res: Response
-  ): Promise<any> {
+  ): Promise<Response | void> {
     this.getDistinctDates
       .execute()
       .then((dates) => {

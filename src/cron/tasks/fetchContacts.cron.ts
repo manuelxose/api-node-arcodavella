@@ -3,6 +3,7 @@ import { ContactMongoRepository } from "../../infrastructure/repositories/contac
 import { ContactMongodataSource } from "../../infrastructure/datasources";
 import { ImapAdapter } from "../../core/adapters/imap";
 import { CronAdapter } from "../../core/adapters/cron";
+import { CustomError } from "../../domain/errors";
 
 export class FetchContactsCron {
   private iamAdapter: ImapAdapter;
@@ -26,15 +27,18 @@ export class FetchContactsCron {
     console.log("Iniciando la tarea cron para FetchContacts");
 
     // Programar la tarea cron
-    this.cronAdapter;
     this.cronAdapter
       .scheduleTask("0 0 * * *", async () => {
         console.log("Ejecutando el caso de uso FetchContacts");
         try {
           await this.fetchContactUseCase.execute();
           console.log("FetchContacts ejecutado con éxito");
-        } catch (error: any) {
-          console.error(`Error en FetchContacts: ${error.message}`);
+        } catch (error: unknown) {
+          if (error instanceof CustomError) {
+            console.error(`Error en FetchContacts: ${error.message}`);
+          } else {
+            console.error(`Error en FetchContacts: ${error}`);
+          }
         }
       })
       .start();

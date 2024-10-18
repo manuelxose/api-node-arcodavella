@@ -22,7 +22,6 @@ import { NotificationRepository } from "../../domain/repositories";
 import {
   NodemailerEmailRepository,
   MemberMongoRepository,
-  LogRepository,
 } from "../repositories";
 import { CustomError } from "../../domain/errors";
 import { GetUserById } from "../../application/use-cases/auth/GetUserById.use-case";
@@ -199,7 +198,7 @@ export class AuthController {
 
       // Enviar una respuesta exitosa
       return res.status(200).json({ message: "Profile updated successfully" });
-    } catch (error: any) {
+    } catch (error: unknown) {
       // Manejo de errores
       if (error instanceof CustomError) {
         return this.sendError(res, error, 400);
@@ -207,7 +206,7 @@ export class AuthController {
 
       // Manejar errores inesperados
       console.error("Error al actualizar el perfil:", error);
-      return this.sendError(res, error.message, 500);
+      next(error);
     }
   }
 

@@ -3,7 +3,6 @@ import { CustomError } from "../../domain/errors/custom.errors";
 import logger from "../../core/adapters/logger";
 import fs from "fs/promises";
 import path from "path";
-import { error } from "console";
 
 export async function errorHandler(
   err: Error,

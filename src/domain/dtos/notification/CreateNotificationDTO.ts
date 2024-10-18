@@ -12,7 +12,7 @@ export class CreateNotificationDTO {
     public readonly summary: string,
     public readonly status: StatusCodes,
     public readonly fieldToUpdate?: string, // Campo que se quiere actualizar (opcional)
-    public readonly newValue?: any // Nuevo valor del campo (opcional)
+    public readonly newValue?: string // Nuevo valor del campo (opcional)
   ) {}
 
   // Método de fábrica para crear un DTO con validación de campos
@@ -25,7 +25,7 @@ export class CreateNotificationDTO {
     summary: string;
     status: StatusCodes;
     fieldToUpdate?: string; // Campo opcional
-    newValue?: any; // Valor opcional
+    newValue?: string; // Valor opcional
   }): [CustomError | null, CreateNotificationDTO | null] {
     const validationError = this.validateFields(data);
     if (validationError) {

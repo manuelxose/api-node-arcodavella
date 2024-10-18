@@ -10,7 +10,7 @@ export class UpdateNotificationDTO {
     public readonly summary?: string,
     public readonly message?: string,
     public readonly fieldToUpdate?: string, // Campo solicitado para modificación (opcional)
-    public readonly newValue?: any // Nuevo valor propuesto (opcional)
+    public readonly newValue?: string // Nuevo valor propuesto (opcional)
   ) {}
 
   // Método de fábrica para crear un DTO con validación de campos
@@ -50,7 +50,7 @@ export class UpdateNotificationDTO {
     title?: string;
     message?: string;
     fieldToUpdate?: string;
-    newValue?: any;
+    newValue?: string;
   }): CustomError | null {
     // Validar que el ID no esté vacío
     if (!Validators.isNotEmpty(data.id)) {

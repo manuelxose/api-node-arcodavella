@@ -4677,3 +4677,28 @@
 2024-10-18 00:00:18 [WARN]: Contacto con correo csandracarneiro@hotmail.com no encontrado. 
 2024-10-18 00:00:18 [INFO]: Contacto creado con ID: 671188f2555b2e22d65f5bd4 
 2024-10-18 00:00:18 [INFO]: Contacto almacenado: {"id":"","nombre":"carla carneiro","correo":"csandracarneiro@hotmail.com","telefono":"698131242","fechaRegistro":"2024-10-17T14:17:48.000Z","activo":true} 
+2024-10-18 15:28:27 [INFO]: Tarea cron programada: 0 0 * * * 
+2024-10-18 15:41:55 [INFO]: Tarea cron programada: 0 0 * * * 
+2024-10-18 15:42:36 [INFO]: Tarea cron programada: 0 0 * * * 
+2024-10-18 15:43:37 [INFO]: Tarea cron programada: 0 0 * * * 
+2024-10-18 15:44:23 [INFO]: Tarea cron programada: 0 0 * * * 
+2024-10-18 15:46:13 [INFO]: Tarea cron programada: 0 0 * * * 
+2024-10-18 15:46:21 [INFO]: Tarea cron programada: 0 0 * * * 
+2024-10-18 15:46:59 [INFO]: Tarea cron programada: 0 0 * * * 
+2024-10-18 15:47:37 [INFO]: Tarea cron programada: 0 0 * * * 
+2024-10-18 15:48:57 [INFO]: Tarea cron programada: 0 0 * * * 
+2024-10-18 15:51:42 [INFO]: Tarea cron programada: 0 0 * * * 
+2024-10-18 15:53:29 [INFO]: Tarea cron programada: 0 0 * * * 
+2024-10-18 15:55:24 [INFO]: Tarea cron programada: 0 0 * * * 
+2024-10-18 15:56:24 [INFO]: Tarea cron programada: 0 0 * * * 
+2024-10-18 15:58:39 [INFO]: Tarea cron programada: 0 0 * * * 
+2024-10-18 15:59:05 [INFO]: Tarea cron programada: 0 0 * * * 
+2024-10-18 16:03:19 [INFO]: Tarea cron programada: 0 0 * * * 
+2024-10-18 16:04:21 [INFO]: Tarea cron programada: 0 0 * * * 
+2024-10-18 16:04:27 [INFO]: Tarea cron programada: 0 0 * * * 
+2024-10-18 16:04:38 [INFO]: Tarea cron programada: 0 0 * * * 
+2024-10-18 16:05:15 [INFO]: Tarea cron programada: 0 0 * * * 
+2024-10-18 16:05:28 [INFO]: Tarea cron programada: 0 0 * * * 
+2024-10-18 16:05:47 [INFO]: Tarea cron programada: 0 0 * * * 
+2024-10-18 16:07:07 [INFO]: Tarea cron programada: 0 0 * * * 
+2024-10-18 18:41:56 [INFO]: Tarea cron programada: 0 0 * * * 

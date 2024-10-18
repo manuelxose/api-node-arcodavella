@@ -4,6 +4,18 @@ import {
   RecipientTypes,
   NotificationTypes,
 } from "../../domain/enums";
+export interface NotificationDTO {
+  id: string;
+  recipientId: string;
+  recipientType: RecipientTypes;
+  type: NotificationTypes;
+  message: string;
+  title: string;
+  summary: string;
+  status: StatusCodes;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
 export class NotificationMapper {
   // Convierte un objeto genérico (parcial) en una NotificationEntity
@@ -23,23 +35,23 @@ export class NotificationMapper {
   }
 
   // Convierte una NotificationEntity en un objeto genérico (parcial)
-  static toDTO(entity: NotificationEntity): Record<string, any> {
+  static toDTO(entity: NotificationEntity): NotificationDTO {
     return {
       id: entity.id,
       recipientId: entity.recipientId,
       recipientType: entity.recipientType,
       type: entity.type,
       message: entity.message,
-      title: entity.title, // Incluir 'title'
-      summary: entity.summary, // Incluir 'summary'
+      title: entity.title,
+      summary: entity.summary,
       status: entity.status,
       createdAt: entity.createdAt,
       updatedAt: entity.updatedAt,
     };
   }
 
-  // Convierte un array de NotificationEntity en un array de objetos genéricos
-  static toDTOs(entities: NotificationEntity[]): Record<string, any>[] {
+  // Convierte un array de NotificationEntity en un array de NotificationDTO
+  static toDTOs(entities: NotificationEntity[]): NotificationDTO[] {
     return entities.map((entity) => this.toDTO(entity));
   }
 

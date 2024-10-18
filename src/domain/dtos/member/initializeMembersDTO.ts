@@ -1,4 +1,4 @@
-import { Validators } from "../../../shared/validators";
+import { MemberEntity } from "../../entities/members/MemberEntity";
 import { CustomError } from "../../errors";
 import { CreateMemberDTO } from "./createMemberDTO";
 
@@ -6,7 +6,7 @@ export class InitializeMembersDTO {
   constructor(public readonly members: CreateMemberDTO[]) {}
 
   static create(data: {
-    members: any[];
+    members: MemberEntity[];
   }): [CustomError | null, InitializeMembersDTO | null] {
     const validationError = this.validateFields(data);
     if (validationError) {
@@ -25,7 +25,9 @@ export class InitializeMembersDTO {
     return [null, new InitializeMembersDTO(members)];
   }
 
-  private static validateFields(data: { members: any[] }): CustomError | null {
+  private static validateFields(data: {
+    members: MemberEntity[];
+  }): CustomError | null {
     if (!Array.isArray(data.members) || data.members.length === 0) {
       return CustomError.badRequest(
         "Members array is required and cannot be empty"

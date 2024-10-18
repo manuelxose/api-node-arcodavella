@@ -1,12 +1,7 @@
 import { AuthRepository, MemberRepository } from "../../../domain/repositories";
 import { GetActiveUserDTO, UpdateProfileDTO } from "../../../domain/dtos/auth";
-import { NotificationTypes } from "../../../domain/enums";
-import {
-  GetMemberByEmailDTO,
-  GetMemberByIdDTO,
-} from "../../../domain/dtos/member";
+import { GetMemberByEmailDTO } from "../../../domain/dtos/member";
 import { CustomError } from "../../../domain/errors";
-import { GetActiveUser } from "./GetActiveUser";
 
 export class UpdateProfile {
   constructor(
@@ -50,7 +45,7 @@ export class UpdateProfile {
     }
 
     // Excluir el campo email y asignar el resto de los datos del miembro al DTO de actualización
-    const { email, id, ...restMemberData } = member;
+    const { ...restMemberData } = member;
 
     // Unificar los datos del miembro con el updateProfileDTO
     Object.assign(updateProfileDTO, restMemberData);

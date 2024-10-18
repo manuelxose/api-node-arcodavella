@@ -10,31 +10,35 @@ import { ContactoMapper } from "../mapppers/contact.mapper";
 export class ContactMongodataSource extends ContactoDataSource {
   // Crear un nuevo contacto
   async create(contacto: ContactoEntity): Promise<ContactoEntity> {
-    // Verificar si el contacto ya existe por correo electrónico
-    const existingContacto = await ContactoModel.findOne({
-      correo: contacto.correo,
-    });
-
-    if (existingContacto) {
-      logger.warn(`Contacto con correo ${contacto.correo} ya existe.`);
-      throw CustomError.badRequest("Contacto ya existe");
-    }
-
-    // Crear y guardar el nuevo contacto en MongoDB
-    const newContacto = new ContactoModel({
-      nombre: contacto.nombre,
-      correo: contacto.correo,
-      telefono: contacto.telefono,
-      fechaRegistro: contacto.fechaRegistro,
-      activo: contacto.activo,
-    });
-
     try {
+      // Verificar si el contacto ya existe por correo electrónico
+      const existingContacto = await ContactoModel.findOne({
+        correo: contacto.correo,
+      });
+
+      if (existingContacto) {
+        logger.warn(`Contacto con correo ${contacto.correo} ya existe.`);
+        throw CustomError.badRequest("Contacto ya existe");
+      }
+
+      // Crear y guardar el nuevo contacto en MongoDB
+      const newContacto = new ContactoModel({
+        nombre: contacto.nombre,
+        correo: contacto.correo,
+        telefono: contacto.telefono,
+        fechaRegistro: contacto.fechaRegistro,
+        activo: contacto.activo,
+      });
+
       const savedContacto = await newContacto.save();
       logger.info(`Contacto creado con ID: ${savedContacto._id}`);
       return ContactoMapper.toEntity(savedContacto);
-    } catch (error: any) {
-      logger.error(`Error al crear contacto: ${error.message}`);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        logger.error(`Error al crear contacto: ${error.message}`);
+      } else {
+        logger.error(`Error inesperado al crear contacto: ${error}`);
+      }
       throw CustomError.internal("Error al crear contacto");
     }
   }
@@ -49,8 +53,12 @@ export class ContactMongodataSource extends ContactoDataSource {
       }
       logger.info(`Contacto encontrado: ${contacto.correo}`);
       return ContactoMapper.toEntity(contacto);
-    } catch (error: any) {
-      logger.error(`Error al buscar contacto: ${error.message}`);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        logger.error(`Error al buscar contacto: ${error.message}`);
+      } else {
+        logger.error(`Error inesperado al buscar contacto: ${error}`);
+      }
       throw CustomError.internal("Error al buscar contacto");
     }
   }
@@ -78,34 +86,51 @@ export class ContactMongodataSource extends ContactoDataSource {
 
       logger.info(`Contacto actualizado: ${updatedContacto.correo}`);
       return ContactoMapper.toEntity(updatedContacto);
-    } catch (error: any) {
-      logger.error(`Error al actualizar contacto: ${error.message}`);
-      if (error.name === "ValidationError") {
-        throw CustomError.badRequest("Datos de contacto inválidos");
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        logger.error(`Error al actualizar contacto: ${error.message}`);
+        if (error.name === "ValidationError") {
+          throw CustomError.badRequest("Datos de contacto inválidos");
+        }
+      } else {
+        logger.error(`Error inesperado al actualizar contacto: ${error}`);
       }
       throw CustomError.internal("Error al actualizar contacto");
     }
   }
 
+  // Buscar todos los contactos
   async findAll(): Promise<ContactoEntity[]> {
     try {
       console.log("Entra en el metodo");
       const contacts = await ContactoModel.find();
       if (!contacts) throw CustomError.notFound("No contacts found");
       return contacts.map(ContactoMapper.toEntity);
-    } catch (error: any) {
-      logger.error(`Error al buscar todos los contactos: ${error.message}`);
-      throw CustomError.internal("Error al buscar todos los contactos");
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        logger.error(`Error al buscar todos los contactos: ${error.message}`);
+        throw CustomError.internal("Error al buscar todos los contactos");
+      } else {
+        logger.error(`Unexpected error: ${error}`);
+        throw CustomError.internal("Unexpected error occurred");
+      }
     }
   }
 
+  // Buscar contacto por ID
   async findById(id: string): Promise<ContactoEntity> {
     try {
       const contact = await ContactoModel.findById(id);
       if (!contact) throw CustomError.notFound("Contact not found");
       return ContactoMapper.toEntity(contact);
-    } catch (error: any) {
-      logger.error(`Error al buscar contacto con ID: ${id}: ${error.message}`);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        logger.error(
+          `Error al buscar contacto con ID: ${id}: ${error.message}`
+        );
+      } else {
+        logger.error(`Error inesperado al buscar contacto con ID: ${id}`);
+      }
       throw CustomError.internal("Error al buscar contacto");
     }
   }

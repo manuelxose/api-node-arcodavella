@@ -1,6 +1,5 @@
 import { UserEntity } from "../entities/auth";
 import {
-  ChangePasswordDTO,
   GetActiveUserByEmailDTO,
   GetActiveUserDTO,
   GetUserByIdDTO,

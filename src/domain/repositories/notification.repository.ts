@@ -8,7 +8,6 @@ import {
   DeleteNotificationDTO,
   GetNotificationByIdDTO,
 } from "../dtos/notification";
-import { SendBulkEmailDTO } from "../dtos/email";
 
 export abstract class NotificationRepository {
   abstract createNotification(
