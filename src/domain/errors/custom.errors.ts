@@ -22,4 +22,7 @@ export class CustomError extends Error {
   static unauthorized(message: string): CustomError {
     return new CustomError(message, 401);
   }
+  static forbidden(message: string): CustomError {
+    return new CustomError(message, 403);
+  }
 }

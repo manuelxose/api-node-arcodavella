@@ -5,3 +5,6 @@ export * from "./ResetPassword";
 export * from "./ChangePassword";
 export * from "./UpdateProfile";
 export * from "./GetActiveUser";
+export * from "./GetUserByEmailUseCase";
+export * from "./GetAllUsers";
+export * from "./RequestPasswordReset";

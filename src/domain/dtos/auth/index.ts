@@ -8,3 +8,4 @@ export * from "./GetActiveUserDTO";
 export * from "./GetActiveUserByEmailDTO";
 export * from "./RequestPaswordResetDTO";
 export * from "./UpdatePasswordDTO";
+export * from "./GetUserByIdDTO";

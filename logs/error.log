@@ -118,3 +118,601 @@
   "responseCode": 501,
   "command": "MAIL FROM"
 }
+2024-09-02 18:41:59 [ERROR]: undefined {
+  "code": "ERR_HTTP_HEADERS_SENT"
+}
+2024-09-02 18:51:11 [ERROR]: undefined {
+  "code": "ERR_HTTP_HEADERS_SENT"
+}
+2024-09-04 16:24:49 [ERROR]: undefined {
+  "stringValue": "\"id=66d85d2e29997eab01c8fde0\"",
+  "kind": "ObjectId",
+  "value": "id=66d85d2e29997eab01c8fde0",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 16:25:55 [ERROR]: undefined {
+  "stringValue": "\"id=66d85d2e29997eab01c8fde0\"",
+  "kind": "ObjectId",
+  "value": "id=66d85d2e29997eab01c8fde0",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 16:26:34 [ERROR]: undefined {
+  "stringValue": "\"id=66d85d2e29997eab01c8fde0\"",
+  "kind": "ObjectId",
+  "value": "id=66d85d2e29997eab01c8fde0",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 16:27:09 [ERROR]: undefined {
+  "stringValue": "\"id=66d85d2e29997eab01c8fde0\"",
+  "kind": "ObjectId",
+  "value": "id=66d85d2e29997eab01c8fde0",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 16:51:21 [ERROR]: undefined {
+  "errorResponse": {
+    "index": 0,
+    "code": 11000,
+    "errmsg": "E11000 duplicate key error collection: cluster0.members index: dni_1 dup key: { dni: \"53198877S\" }",
+    "keyPattern": {
+      "dni": 1
+    },
+    "keyValue": {
+      "dni": "53198877S"
+    }
+  },
+  "index": 0,
+  "code": 11000,
+  "keyPattern": {
+    "dni": 1
+  },
+  "keyValue": {
+    "dni": "53198877S"
+  }
+}
+2024-09-04 16:59:07 [ERROR]: undefined {
+  "errorResponse": {
+    "ok": 0,
+    "errmsg": "Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: cluster0.members index: email_1 dup key: { email: \"manuelxosegonzalez@gmail.com\" }",
+    "code": 11000,
+    "codeName": "DuplicateKey",
+    "keyPattern": {
+      "email": 1
+    },
+    "keyValue": {
+      "email": "manuelxosegonzalez@gmail.com"
+    },
+    "$clusterTime": {
+      "clusterTime": {
+        "$timestamp": "7410802637152452610"
+      },
+      "signature": {
+        "hash": "XAk6TAB+TIehex/XPTt8dZywT2Q=",
+        "keyId": {
+          "low": 241,
+          "high": 1711728857,
+          "unsigned": false
+        }
+      }
+    },
+    "operationTime": {
+      "$timestamp": "7410802632857485325"
+    }
+  },
+  "ok": 0,
+  "code": 11000,
+  "codeName": "DuplicateKey",
+  "keyPattern": {
+    "email": 1
+  },
+  "keyValue": {
+    "email": "manuelxosegonzalez@gmail.com"
+  },
+  "$clusterTime": {
+    "clusterTime": {
+      "$timestamp": "7410802637152452610"
+    },
+    "signature": {
+      "hash": "XAk6TAB+TIehex/XPTt8dZywT2Q=",
+      "keyId": {
+        "low": 241,
+        "high": 1711728857,
+        "unsigned": false
+      }
+    }
+  },
+  "operationTime": {
+    "$timestamp": "7410802632857485325"
+  }
+}
+2024-09-04 17:00:40 [ERROR]: undefined {
+  "errorResponse": {
+    "ok": 0,
+    "errmsg": "Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: cluster0.members index: email_1 dup key: { email: \"manuelxosegonzalez@gmail.com\" }",
+    "code": 11000,
+    "codeName": "DuplicateKey",
+    "keyPattern": {
+      "email": 1
+    },
+    "keyValue": {
+      "email": "manuelxosegonzalez@gmail.com"
+    },
+    "$clusterTime": {
+      "clusterTime": {
+        "$timestamp": "7410803036584411140"
+      },
+      "signature": {
+        "hash": "a9c5/wfgZnuonjOtFk1/J3kgkjc=",
+        "keyId": {
+          "low": 241,
+          "high": 1711728857,
+          "unsigned": false
+        }
+      }
+    },
+    "operationTime": {
+      "$timestamp": "7410803036584411138"
+    }
+  },
+  "ok": 0,
+  "code": 11000,
+  "codeName": "DuplicateKey",
+  "keyPattern": {
+    "email": 1
+  },
+  "keyValue": {
+    "email": "manuelxosegonzalez@gmail.com"
+  },
+  "$clusterTime": {
+    "clusterTime": {
+      "$timestamp": "7410803036584411140"
+    },
+    "signature": {
+      "hash": "a9c5/wfgZnuonjOtFk1/J3kgkjc=",
+      "keyId": {
+        "low": 241,
+        "high": 1711728857,
+        "unsigned": false
+      }
+    }
+  },
+  "operationTime": {
+    "$timestamp": "7410803036584411138"
+  }
+}
+2024-09-04 17:07:21 [ERROR]: undefined {
+  "errorResponse": {
+    "ok": 0,
+    "errmsg": "Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: cluster0.members index: email_1 dup key: { email: \"manuelxosegonzalez@gmail.com\" }",
+    "code": 11000,
+    "codeName": "DuplicateKey",
+    "keyPattern": {
+      "email": 1
+    },
+    "keyValue": {
+      "email": "manuelxosegonzalez@gmail.com"
+    },
+    "$clusterTime": {
+      "clusterTime": {
+        "$timestamp": "7410804758866296838"
+      },
+      "signature": {
+        "hash": "pVFJlFctsg9hhSX9V+77jG8vAVA=",
+        "keyId": {
+          "low": 241,
+          "high": 1711728857,
+          "unsigned": false
+        }
+      }
+    },
+    "operationTime": {
+      "$timestamp": "7410804758866296836"
+    }
+  },
+  "ok": 0,
+  "code": 11000,
+  "codeName": "DuplicateKey",
+  "keyPattern": {
+    "email": 1
+  },
+  "keyValue": {
+    "email": "manuelxosegonzalez@gmail.com"
+  },
+  "$clusterTime": {
+    "clusterTime": {
+      "$timestamp": "7410804758866296838"
+    },
+    "signature": {
+      "hash": "pVFJlFctsg9hhSX9V+77jG8vAVA=",
+      "keyId": {
+        "low": 241,
+        "high": 1711728857,
+        "unsigned": false
+      }
+    }
+  },
+  "operationTime": {
+    "$timestamp": "7410804758866296836"
+  }
+}
+2024-09-04 18:03:59 [ERROR]: undefined {
+  "errorResponse": {
+    "ok": 0,
+    "errmsg": "Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: cluster0.members index: email_1 dup key: { email: \"manuelxosegonzalez@gmail.com\" }",
+    "code": 11000,
+    "codeName": "DuplicateKey",
+    "keyPattern": {
+      "email": 1
+    },
+    "keyValue": {
+      "email": "manuelxosegonzalez@gmail.com"
+    },
+    "$clusterTime": {
+      "clusterTime": {
+        "$timestamp": "7410819348870201353"
+      },
+      "signature": {
+        "hash": "2cKCPOIm3rBDrZXlF66RkQeJjdk=",
+        "keyId": {
+          "low": 241,
+          "high": 1711728857,
+          "unsigned": false
+        }
+      }
+    },
+    "operationTime": {
+      "$timestamp": "7410819348870201351"
+    }
+  },
+  "ok": 0,
+  "code": 11000,
+  "codeName": "DuplicateKey",
+  "keyPattern": {
+    "email": 1
+  },
+  "keyValue": {
+    "email": "manuelxosegonzalez@gmail.com"
+  },
+  "$clusterTime": {
+    "clusterTime": {
+      "$timestamp": "7410819348870201353"
+    },
+    "signature": {
+      "hash": "2cKCPOIm3rBDrZXlF66RkQeJjdk=",
+      "keyId": {
+        "low": 241,
+        "high": 1711728857,
+        "unsigned": false
+      }
+    }
+  },
+  "operationTime": {
+    "$timestamp": "7410819348870201351"
+  }
+}
+2024-09-04 18:36:33 [ERROR]: undefined {
+  "stringValue": "\"getAll\"",
+  "kind": "ObjectId",
+  "value": "getAll",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 18:37:34 [ERROR]: undefined {
+  "stringValue": "\"getAll\"",
+  "kind": "ObjectId",
+  "value": "getAll",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 18:41:19 [ERROR]: undefined {
+  "stringValue": "\"getAll\"",
+  "kind": "ObjectId",
+  "value": "getAll",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 18:41:20 [ERROR]: undefined {
+  "stringValue": "\"getAll\"",
+  "kind": "ObjectId",
+  "value": "getAll",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 18:42:39 [ERROR]: undefined {
+  "stringValue": "\"getAll\"",
+  "kind": "ObjectId",
+  "value": "getAll",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 18:43:09 [ERROR]: undefined {
+  "stringValue": "\"getAll\"",
+  "kind": "ObjectId",
+  "value": "getAll",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 18:44:52 [ERROR]: undefined {
+  "stringValue": "\"getAll\"",
+  "kind": "ObjectId",
+  "value": "getAll",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 18:46:18 [ERROR]: undefined {
+  "stringValue": "\"getAll\"",
+  "kind": "ObjectId",
+  "value": "getAll",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 18:49:16 [ERROR]: undefined {
+  "stringValue": "\"all\"",
+  "kind": "ObjectId",
+  "value": "all",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 18:49:56 [ERROR]: undefined {
+  "stringValue": "\"all\"",
+  "kind": "ObjectId",
+  "value": "all",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 18:51:39 [ERROR]: undefined {
+  "stringValue": "\"all\"",
+  "kind": "ObjectId",
+  "value": "all",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 18:52:35 [ERROR]: undefined {
+  "stringValue": "\"getAll\"",
+  "kind": "ObjectId",
+  "value": "getAll",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 18:52:54 [ERROR]: undefined {
+  "stringValue": "\"getAll\"",
+  "kind": "ObjectId",
+  "value": "getAll",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 18:53:24 [ERROR]: undefined {
+  "stringValue": "\"all\"",
+  "kind": "ObjectId",
+  "value": "all",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 18:54:13 [ERROR]: undefined {
+  "stringValue": "\"all\"",
+  "kind": "ObjectId",
+  "value": "all",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 18:57:52 [ERROR]: undefined {
+  "stringValue": "\"initialize\"",
+  "kind": "ObjectId",
+  "value": "initialize",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 18:58:03 [ERROR]: undefined {
+  "stringValue": "\"create\"",
+  "kind": "ObjectId",
+  "value": "create",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 18:58:29 [ERROR]: undefined {
+  "stringValue": "\"create\"",
+  "kind": "ObjectId",
+  "value": "create",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 18:59:18 [ERROR]: undefined {
+  "stringValue": "\"all\"",
+  "kind": "ObjectId",
+  "value": "all",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 19:00:02 [ERROR]: undefined {
+  "stringValue": "\"all\"",
+  "kind": "ObjectId",
+  "value": "all",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 19:00:05 [ERROR]: undefined {
+  "stringValue": "\"all\"",
+  "kind": "ObjectId",
+  "value": "all",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 19:00:09 [ERROR]: undefined {
+  "stringValue": "\"all\"",
+  "kind": "ObjectId",
+  "value": "all",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 19:02:24 [ERROR]: undefined {
+  "stringValue": "\"all\"",
+  "kind": "ObjectId",
+  "value": "all",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 19:02:25 [ERROR]: undefined {
+  "stringValue": "\"all\"",
+  "kind": "ObjectId",
+  "value": "all",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 19:02:25 [ERROR]: undefined {
+  "stringValue": "\"all\"",
+  "kind": "ObjectId",
+  "value": "all",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 19:02:26 [ERROR]: undefined {
+  "stringValue": "\"all\"",
+  "kind": "ObjectId",
+  "value": "all",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 19:02:26 [ERROR]: undefined {
+  "stringValue": "\"all\"",
+  "kind": "ObjectId",
+  "value": "all",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 19:02:26 [ERROR]: undefined {
+  "stringValue": "\"all\"",
+  "kind": "ObjectId",
+  "value": "all",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 19:02:26 [ERROR]: undefined {
+  "stringValue": "\"all\"",
+  "kind": "ObjectId",
+  "value": "all",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 19:02:27 [ERROR]: undefined {
+  "stringValue": "\"all\"",
+  "kind": "ObjectId",
+  "value": "all",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 19:02:35 [ERROR]: undefined {
+  "stringValue": "\"all\"",
+  "kind": "ObjectId",
+  "value": "all",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 19:02:39 [ERROR]: undefined {
+  "stringValue": "\"all\"",
+  "kind": "ObjectId",
+  "value": "all",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-04 19:04:47 [ERROR]: undefined {
+  "stringValue": "\"all\"",
+  "kind": "ObjectId",
+  "value": "all",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-05 02:59:37 [ERROR]: undefined {
+  "stringValue": "\"initialize\"",
+  "kind": "ObjectId",
+  "value": "initialize",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-05 12:39:41 [ERROR]: getAllMembers: Error encountered - Invalid DNI format 
+2024-09-05 12:41:03 [ERROR]: getAllMembers: Error encountered - Invalid member number format 
+2024-09-13 22:32:14 [ERROR]: undefined 
+2024-09-13 22:34:18 [ERROR]: undefined 
+2024-09-13 22:34:20 [ERROR]: undefined 
+2024-09-13 22:34:21 [ERROR]: undefined 
+2024-09-13 22:34:21 [ERROR]: undefined 
+2024-09-13 22:34:21 [ERROR]: undefined 
+2024-09-13 22:34:22 [ERROR]: undefined 
+2024-09-13 23:06:55 [ERROR]: Expected ',' or ']' after array element in JSON at position 335 
+2024-09-14 00:53:34 [ERROR]: Expected ',' or '}' after property value in JSON at position 186 
+2024-09-14 04:42:35 [ERROR]: request entity too large 
+2024-09-20 01:48:55 [ERROR]: request entity too large 
+2024-09-20 01:58:05 [ERROR]: request entity too large 
+2024-09-20 18:02:32 [ERROR]: request entity too large 
+2024-09-21 17:43:51 [ERROR]: undefined {
+  "stringValue": "\"undefined\"",
+  "kind": "ObjectId",
+  "value": "undefined",
+  "path": "_id",
+  "reason": {},
+  "valueType": "string"
+}
+2024-09-25 15:45:19 [ERROR]: request entity too large 
+2024-10-15 13:39:57 [ERROR]: Class constructor EmailRoutes cannot be invoked without 'new' 
+2024-10-16 19:54:15 [ERROR]: Cast to ObjectId failed for value "all" (type string) at path "_id" for model "User" 
+2024-10-16 19:57:42 [ERROR]: Cast to ObjectId failed for value "all" (type string) at path "_id" for model "User" 
+2024-10-16 19:59:32 [ERROR]: Cast to ObjectId failed for value "all" (type string) at path "_id" for model "User" 
+2024-10-16 20:06:50 [ERROR]: Cast to ObjectId failed for value "all" (type string) at path "_id" for model "User" 
+2024-10-16 20:07:29 [ERROR]: Cast to ObjectId failed for value "all" (type string) at path "_id" for model "User" 
+2024-10-16 20:09:15 [ERROR]: Cast to ObjectId failed for value "all" (type string) at path "_id" for model "User" 
+2024-10-16 20:13:14 [ERROR]: Cast to ObjectId failed for value "all" (type string) at path "_id" for model "User" 
+2024-10-16 20:18:26 [ERROR]: Cast to ObjectId failed for value "all" (type string) at path "_id" for model "User" 
+2024-10-16 20:20:41 [ERROR]: Cast to ObjectId failed for value "all" (type string) at path "_id" for model "User" 
+2024-10-16 20:21:43 [ERROR]: Cast to ObjectId failed for value "all" (type string) at path "_id" for model "User" 
+2024-10-16 20:22:29 [ERROR]: Cast to ObjectId failed for value "all" (type string) at path "_id" for model "User" 
+2024-10-17 12:31:41 [ERROR]: Error al procesar los correos: Unexpected search option: AKK 
+2024-10-17 13:21:32 [ERROR]: Error procesando el correo: input.once is not a function 
+2024-10-17 13:21:32 [ERROR]: Error procesando el correo: input.once is not a function 
+2024-10-17 13:21:32 [ERROR]: Error procesando el correo: input.once is not a function 
+2024-10-17 13:21:32 [ERROR]: Error procesando el correo: input.once is not a function 
+2024-10-17 13:21:32 [ERROR]: Error procesando el correo: input.once is not a function 
+2024-10-17 13:21:32 [ERROR]: Error procesando el correo: input.once is not a function 
+2024-10-17 13:21:32 [ERROR]: Error procesando el correo: input.once is not a function 
+2024-10-17 13:21:32 [ERROR]: Error procesando el correo: input.once is not a function 
+2024-10-17 13:21:32 [ERROR]: Error procesando el correo: input.once is not a function 
+2024-10-17 13:21:32 [ERROR]: Error procesando el correo: input.once is not a function 

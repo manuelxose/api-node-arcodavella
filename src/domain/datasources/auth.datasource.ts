@@ -3,6 +3,7 @@ import {
   ChangePasswordDTO,
   GetActiveUserByEmailDTO,
   GetActiveUserDTO,
+  GetUserByIdDTO,
   LoginUserDTO,
   RegisterUserDTO,
   ResetPasswordDTO,
@@ -26,4 +27,6 @@ export abstract class AuthDataSource {
   abstract updatePassword(
     updatePasswordDTO: UpdatePasswordDTO
   ): Promise<UserEntity>;
+  abstract getAll(): Promise<UserEntity[]>;
+  abstract getById(dto: GetUserByIdDTO): Promise<UserEntity>;
 }

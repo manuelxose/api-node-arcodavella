@@ -1,5 +1,10 @@
+// src/domain/enums/StatusCodes.ts
 export enum StatusCodes {
-  Active = "active",
-  Inactive = "inactive",
-  Suspended = "suspended",
+  PENDING = "pending",
+  UNREAD = "unread",
+  READ = "read",
+  APPROVED = "approved",
+  REJECTED = "rejected",
+  ACTIVE = "active",
+  UNASSIGNED = "unasigned",
 }

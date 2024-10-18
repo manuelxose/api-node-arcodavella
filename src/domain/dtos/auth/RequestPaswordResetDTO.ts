@@ -1,4 +1,5 @@
 import { Validators } from "../../../shared/validators";
+import { CustomError } from "../../../domain/errors/custom.errors";
 
 export class RequestPasswordResetDTO {
   public email: string;
@@ -8,16 +9,24 @@ export class RequestPasswordResetDTO {
   }
 
   static create(data: {
-    email: string;
-  }): [Error | null, RequestPasswordResetDTO | null] {
-    if (!Validators.isNotEmpty(data.email)) {
-      return [new Error("Email is required"), null];
+    email: any;
+  }): [CustomError | null, RequestPasswordResetDTO | null] {
+    console.log(data);
+
+    if (typeof data.email !== "string") {
+      return [CustomError.badRequest("Email must be a string"), null];
     }
 
-    if (!Validators.isValidEmail(data.email)) {
-      return [new Error("Invalid email format"), null];
+    const email = data.email.trim(); // Asegura que no haya espacios en blanco alrededor del correo
+
+    if (!Validators.isNotEmpty(email)) {
+      return [CustomError.badRequest("Email is required"), null];
     }
 
-    return [null, new RequestPasswordResetDTO(data.email)];
+    if (!Validators.isValidEmail(email)) {
+      return [CustomError.badRequest("Invalid email format"), null];
+    }
+
+    return [null, new RequestPasswordResetDTO(email)];
   }
 }

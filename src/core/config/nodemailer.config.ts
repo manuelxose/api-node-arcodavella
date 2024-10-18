@@ -1,5 +1,5 @@
+// src/core/config/email.config.ts
 import nodemailer, { Transporter } from "nodemailer";
-import SMTPTransport from "nodemailer/lib/smtp-transport"; // Importa SMTPTransport
 import { env } from "./env";
 
 export class EmailConfig {
@@ -7,40 +7,48 @@ export class EmailConfig {
   private transporter: Transporter;
 
   private constructor() {
-    const emailHost = env.emailHost || "smtp.ionos.com"; // Valor por defecto
-    const emailPort = parseInt(env.emailPort || "587", 10); // Valor por defecto y conversión a número
+    const emailHost = env.emailHost || "smtp.ionos.com"; // Default value
+    const emailPort = Number(env.emailPort) || 587; // Default port
     const emailUser = env.emailUser;
     const emailPass = env.emailPass;
 
     if (!emailUser || !emailPass) {
       throw new Error(
-        "Faltan credenciales de correo electrónico (usuario o contraseña)."
+        "Email credentials are missing. Please set 'emailUser' and 'emailPass' in the environment variables."
       );
     }
 
-    const smtpOptions: SMTPTransport.Options = {
+    const isSecure = emailPort === 465; // Secure if using port 465
+
+    const smtpOptions = {
       host: emailHost,
       port: emailPort,
-      secure: false, // true para el puerto 465, false para 587
+      secure: isSecure,
       auth: {
         user: emailUser,
         pass: emailPass,
       },
+      // Uncomment the following lines if you need to connect to a server with a self-signed certificate
+      /*
       tls: {
-        rejectUnauthorized: false, // Para evitar problemas con certificados
+        rejectUnauthorized: false, // Allow self-signed certificates
       },
+      */
     };
 
     this.transporter = nodemailer.createTransport(smtpOptions);
 
-    // Verificar la conexión al servidor SMTP
-    this.transporter.verify((error, success) => {
-      if (error) {
-        console.error("Error al conectar con el servidor SMTP:", error);
-      } else {
-        console.log("Servidor SMTP conectado con éxito:", success);
-      }
-    });
+    // Verify the SMTP connection
+    this.verifyTransporter();
+  }
+
+  private async verifyTransporter(): Promise<void> {
+    try {
+      await this.transporter.verify();
+      console.log("SMTP server is ready to take messages.");
+    } catch (error) {
+      console.error("Error connecting to SMTP server:", error);
+    }
   }
 
   public static getInstance(): EmailConfig {

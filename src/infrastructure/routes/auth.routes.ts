@@ -1,52 +1,140 @@
+// src/infrastructure/routes/auth.routes.ts
+
 import { Router } from "express";
-import { AuthController } from "../controllers";
-import { AuthMiddleware } from "../middlewares";
-import { MongoAuthDataSource, NodemailerEmailDataSource } from "../datasources";
+
 import {
+  MongoAuthDataSource,
+  MongoMemberDataSource,
+  MongoNotificationDataSource,
+  NodemailerEmailDataSource,
+} from "../datasources";
+
+import {
+  MemberMongoRepository,
   MongoAuthRepository,
   NodemailerEmailRepository,
+  NotificationMongoRepository,
 } from "../repositories";
+import { AuthController } from "../controllers";
+import { LoginLoggerMiddleware, AuthMiddleware } from "../middlewares";
 
 export class AuthRoutes {
-  static get routes(): Router {
-    const router = Router();
-    // Crear instancias de DataSources y Repositories
+  private router: Router;
+  private authController: AuthController;
+
+  constructor() {
+    this.router = Router();
+
+    // Crear instancias de DataSources
     const authDataSource = new MongoAuthDataSource();
     const emailDataSource = new NodemailerEmailDataSource();
+    const notificationDataSource = new MongoNotificationDataSource();
+    const memberDataSource = new MongoMemberDataSource();
 
+    // Crear instancias de Repositories
     const authRepository = new MongoAuthRepository(authDataSource);
     const emailRepository = new NodemailerEmailRepository(emailDataSource);
+    const notificationRepository = new NotificationMongoRepository(
+      notificationDataSource
+    );
+    const memberRepository = new MemberMongoRepository(memberDataSource);
 
     // Crear instancia del controlador de autenticación
-    const authController = new AuthController(authRepository, emailRepository);
-    const authMiddleware = new AuthMiddleware();
+    this.authController = new AuthController(
+      authRepository,
+      emailRepository,
+      notificationRepository,
+      memberRepository
+    );
 
-    router.post("/login", authController.login.bind(authController));
-    router.post("/register", authController.register.bind(authController));
-    router.post(
+    // Configurar rutas con middleware
+    this.initializeRoutes();
+  }
+
+  /**
+   * Inicializa las rutas de autenticación.
+   */
+  private initializeRoutes(): void {
+    // Rutas más específicas primero
+    // Ruta para obtener todos los usuarios (puede requerir autorización adicional)
+    this.router.get(
+      "/all",
+      AuthMiddleware.validateAdminToken,
+      this.authController.getAll.bind(this.authController)
+    );
+
+    // Ruta para obtener usuario por email
+    this.router.get(
+      "/",
+      AuthMiddleware.validateAdminToken,
+      this.authController.getByEmail.bind(this.authController)
+    );
+
+    // Ruta para obtener usuario por id
+    this.router.get(
+      "/:id",
+      AuthMiddleware.validateAdminToken,
+      this.authController.getById.bind(this.authController)
+    );
+
+    // Ruta para actualizar perfil de usuario
+    this.router.put(
+      "/:id",
+      AuthMiddleware.validateAdminToken,
+      this.authController.updateProfile.bind(this.authController)
+    );
+
+    // Rutas de autenticación
+    // Ruta para iniciar sesión con registro de logins
+    this.router.post(
+      "/login",
+      LoginLoggerMiddleware.logLogin,
+      this.authController.login.bind(this.authController)
+    );
+
+    // Ruta para registrar un nuevo usuario
+    this.router.post(
+      "/register",
+      this.authController.register.bind(this.authController)
+    );
+
+    // Ruta para cerrar sesión
+    this.router.post(
       "/logout",
-      // authMiddleware.validateToken.bind(authMiddleware),
-      authController.logout.bind(authController)
-    );
-    router.post(
-      "/change-password",
-      // authMiddleware.validateToken.bind(authMiddleware),
-      authController.changePassword.bind(authController)
-    );
-    router.post(
-      "/reset-password",
-      authController.resetPassword.bind(authController)
-    );
-    router.post(
-      "/update-profile",
-      // authMiddleware.validateToken.bind(authMiddleware),
-      authController.updateProfile.bind(authController)
+      AuthMiddleware.validateAdminToken,
+      this.authController.logout.bind(this.authController)
     );
 
-    return router;
+    // Ruta para cambiar contraseña
+    this.router.post(
+      "/change-password",
+      //AuthMiddleware.validateAdminToken,
+      this.authController.changePassword.bind(this.authController)
+    );
+
+    // Ruta para solicitar restablecimiento de contraseña
+    this.router.post(
+      "/forgot-password",
+      this.authController.resetPassword.bind(this.authController)
+    );
+
+    // Ruta para restablecer contraseña
+    this.router.post(
+      "/reset-password",
+      this.authController.updateProfile.bind(this.authController)
+    );
+  }
+
+  /**
+   * Retorna el objeto Router configurado.
+   * @returns Router
+   */
+  public getRoutes(): Router {
+    return this.router;
   }
 }
 
-const authRoutes = AuthRoutes.routes;
+const authRoutesInstance = new AuthRoutes();
+const router = authRoutesInstance.getRoutes();
 
-export { authRoutes as router };
+export { router };

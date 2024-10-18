@@ -11,4 +11,8 @@ export const env = {
   emailPass: process.env.IONOS_EMAIL_PASS,
   emailHost: process.env.IONOS_SMTP_HOST,
   emailPort: process.env.IONOS_SMTP_PORT,
+  emailInfoUser: process.env.IONOS_EMAIL_INFO || "",
+  emailInfoPass: process.env.IONOS_EMAIL_INFO_PASS || "",
+  emailInfoHost: process.env.IONOS_EMAIL_INFO_HOST,
+  emailInfoPort: process.env.IONOS_EMAIL_INFO_PORT,
 };

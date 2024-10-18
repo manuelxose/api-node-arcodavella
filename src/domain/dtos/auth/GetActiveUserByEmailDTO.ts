@@ -1,4 +1,5 @@
 import { Validators } from "../../../shared/validators";
+import { CustomError } from "../../errors/custom.errors";
 
 export class GetActiveUserByEmailDTO {
   public email: string;
@@ -8,14 +9,14 @@ export class GetActiveUserByEmailDTO {
   }
 
   static create(data: {
-    email: string;
-  }): [Error | null, GetActiveUserByEmailDTO | null] {
-    if (!Validators.isNotEmpty(data.email)) {
-      return [new Error("User email is required"), null];
+    email: string | undefined;
+  }): [CustomError | null, GetActiveUserByEmailDTO | null] {
+    if (!data.email || !Validators.isNotEmpty(data.email)) {
+      return [CustomError.badRequest("User email is required"), null];
     }
 
     if (!Validators.isValidEmail(data.email)) {
-      return [new Error("Invalid email format"), null];
+      return [CustomError.badRequest("Invalid email format"), null];
     }
 
     return [null, new GetActiveUserByEmailDTO(data.email)];

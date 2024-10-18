@@ -6,6 +6,7 @@ import {
   ResetPasswordDTO,
   GetActiveUserByEmailDTO,
   UpdatePasswordDTO,
+  GetUserByIdDTO,
 } from "../../domain/dtos/auth";
 import { UserEntity } from "../../domain/entities/auth";
 import { GetActiveUserDTO } from "../../domain/dtos/auth";
@@ -45,5 +46,12 @@ export class MongoAuthRepository implements AuthRepository {
   }
   updatePassword(updatePasswordDTO: UpdatePasswordDTO): Promise<UserEntity> {
     return this.dataSource.updatePassword(updatePasswordDTO);
+  }
+  getAll(): Promise<UserEntity[]> {
+    return this.dataSource.getAll();
+  }
+
+  getById(dto: GetUserByIdDTO): Promise<UserEntity> {
+    return this.dataSource.getById(dto);
   }
 }

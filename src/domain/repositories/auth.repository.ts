@@ -10,6 +10,7 @@ import {
   UpdateProfileDTO,
   GetActiveUserByEmailDTO,
 } from "../dtos/auth";
+import { GetUserByIdDTO } from "../dtos/auth/GetUserByIdDTO";
 import { UserEntity } from "../entities/auth";
 
 export abstract class AuthRepository {
@@ -27,4 +28,7 @@ export abstract class AuthRepository {
   abstract updatePassword(
     updatePasswordDTO: UpdatePasswordDTO
   ): Promise<UserEntity>;
+  abstract getAll(): Promise<UserEntity[]>;
+
+  abstract getById(dto: GetUserByIdDTO): Promise<UserEntity>;
 }

@@ -2,6 +2,8 @@ import {
   SendPasswordResetEmailDTO,
   SendWelcomeEmailDTO,
   SendAccountVerificationEmailDTO,
+  SendBulkEmailDTO,
+  SendEmailDTO,
 } from "../dtos/email";
 
 /**
@@ -35,4 +37,14 @@ export abstract class EmailRepository {
   abstract sendAccountVerificationEmail(
     dto: SendAccountVerificationEmailDTO
   ): Promise<void>;
+
+  abstract sendBulkEmail(dto: SendBulkEmailDTO): Promise<void>;
+
+  /**
+   *
+   * Enviar un correo electrónico individual.
+   * @param dto
+   */
+
+  abstract sendEmail(dto: SendEmailDTO): Promise<void>;
 }

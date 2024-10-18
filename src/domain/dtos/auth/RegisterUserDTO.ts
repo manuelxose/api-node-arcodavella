@@ -9,7 +9,7 @@ export class RegisterUserDTO {
   private constructor(email: string, password: string) {
     this.email = email;
     this.password = password;
-    this.role = UserRoles.Admin; // El rol siempre se asigna como Admin
+    this.role = UserRoles.USER; // El rol siempre se asigna como User
   }
 
   static create(data: any): [Error | null, RegisterUserDTO | null] {

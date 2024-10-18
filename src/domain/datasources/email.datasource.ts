@@ -1,4 +1,4 @@
-import { SendEmailDTO } from "../dtos/email";
+import { SendBulkEmailDTO, SendEmailDTO } from "../dtos/email";
 
 /**
  * Clase abstracta EmailDataSource
@@ -12,4 +12,5 @@ export abstract class EmailDataSource {
    * @param data - Datos necesarios para enviar el correo electrónico.
    */
   abstract sendEmail(data: SendEmailDTO): Promise<void>;
+  abstract sendBulkEmail(dto: SendBulkEmailDTO): Promise<void>;
 }
