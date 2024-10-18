@@ -28,16 +28,16 @@ export class RegisterLoginDTO {
     const errors: { [key: string]: string } = {};
 
     // Validar que el email esté presente y no esté vacío
-    if (!Validators.isNotEmpty(data.email)) {
+    if (!data.email || !Validators.isNotEmpty(data.email)) {
       errors.email = "Email is required.";
-    } else if (!Validators.isValidEmail(data.email!)) {
+    } else if (!Validators.isValidEmail(data.email)) {
       errors.email = "Invalid email format.";
     }
 
     // Validar que la ipAddress esté presente y tenga un formato válido
-    if (!Validators.isNotEmpty(data.ipAddress)) {
+    if (!data.ipAddress || !Validators.isNotEmpty(data.ipAddress)) {
       errors.ipAddress = "IP Address is required.";
-    } else if (!Validators.isValidIPAddress(data.ipAddress!)) {
+    } else if (!Validators.isValidIPAddress(data.ipAddress)) {
       errors.ipAddress = "Invalid IP Address format.";
     }
 

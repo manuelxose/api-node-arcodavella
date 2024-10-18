@@ -156,11 +156,11 @@ export class MongoMemberDataSource implements MemberDataSource {
       logger.info("getAllMembers: Successfully retrieved and mapped members");
 
       return memberEntities;
-    } catch (error: any) {
-      logger.error(`getAllMembers: Error encountered - ${error.message}`);
-
+    } catch (error: unknown) {
       // Manejo de errores inesperados
       if (error instanceof CustomError) {
+        logger.error(`getAllMembers: Error encountered - ${error.message}`);
+
         throw error; // Re-lanzamos errores conocidos
       } else {
         throw CustomError.internal(
@@ -242,7 +242,7 @@ export class MongoMemberDataSource implements MemberDataSource {
       // Insertar los nuevos miembros
       await MemberModel.insertMany(memberDocuments);
       console.log("Nuevos miembros insertados.");
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Error capturado:", error); // Mostrar el error completo para depuración
 
       // Verificar si el error tiene `keyPattern` antes de intentar acceder

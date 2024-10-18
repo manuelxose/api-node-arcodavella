@@ -3,7 +3,6 @@ import {
   UpdateAttendanceDTO,
   DeleteAttendanceDTO,
   GetAttendanceByDateDTO,
-  GetDistinctDatesDTO,
 } from "../dtos/attendance";
 import { AttendanceEntity } from "../entities/attendance/attendance.entity";
 

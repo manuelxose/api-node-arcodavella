@@ -9,7 +9,7 @@ export class RequestPasswordResetDTO {
   }
 
   static create(data: {
-    email: any;
+    email: string;
   }): [CustomError | null, RequestPasswordResetDTO | null] {
     console.log(data);
 

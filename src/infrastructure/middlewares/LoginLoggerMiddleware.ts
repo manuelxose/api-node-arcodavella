@@ -48,6 +48,7 @@ export class LoginLoggerMiddleware {
           const loginCount = await registerLoginUseCase.execute(
             registerLoginDTO
           );
+          console.log("Login count for the user:", loginCount);
         }
       }
       next();

@@ -14,7 +14,7 @@ interface INotification extends Document {
   summary: string;
   status: StatusCodes; // Estado de la notificación (pending, read, unread, etc.)
   fieldToUpdate?: string; // El campo que se solicita modificar
-  newValue?: any; // El nuevo valor propuesto para ese campo
+  newValue?: string; // El nuevo valor propuesto para ese campo
   createdAt: Date; // Fecha de creación
   updatedAt: Date; // Fecha de última actualización
 }

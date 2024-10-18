@@ -57,14 +57,22 @@ export class SendBulkNotificationsUseCase {
         success: true,
         message: "Correos enviados y notificación creada correctamente.",
       };
-    } catch (err: any) {
-      logger.error(
-        `Error al enviar correos y crear notificación: ${err.message}`
-      );
-      return {
-        success: false,
-        message: "Error al enviar los correos y crear la notificación.",
-      };
+    } catch (err: unknown) {
+      if (err instanceof CustomError) {
+        logger.error(
+          `Error al enviar correos y crear notificación: ${err.message}`
+        );
+        return {
+          success: false,
+          message: "Error al enviar los correos y crear la notificación.",
+        };
+      } else {
+        logger.error(`Error al enviar correos y crear notificación: ${err}`);
+        return {
+          success: false,
+          message: "Error al enviar los correos y crear la notificación.",
+        };
+      }
     }
   }
 }

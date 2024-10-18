@@ -43,7 +43,7 @@ export class MemberController {
     return res.status(500).send({ error: "Internal server error" });
   }
 
-  public async create(req: Request, res: Response): Promise<any> {
+  public async create(req: Request, res: Response): Promise<Response | void> {
     const [error, createMemberDTO] = CreateMemberDTO.create(req.body);
     if (error) {
       return res.status(400).send({ error: error.message });
@@ -59,7 +59,7 @@ export class MemberController {
       });
   }
 
-  public async update(req: Request, res: Response): Promise<any> {
+  public async update(req: Request, res: Response): Promise<Response | void> {
     const [error, updateMemberDTO] = UpdateMemberDTO.create({
       id: req.params.id,
       ...req.body,
@@ -78,7 +78,7 @@ export class MemberController {
       });
   }
 
-  public async delete(req: Request, res: Response): Promise<any> {
+  public async delete(req: Request, res: Response): Promise<Response | void> {
     const id = req.params.id;
     const [error, deleteMemberDTO] = DeleteMemberDTO.create({
       id: id,
@@ -89,7 +89,7 @@ export class MemberController {
 
     this.deleteMember
       .execute(deleteMemberDTO!)
-      .then((response) => {
+      .then(() => {
         res.status(200).send({ message: "Deleted succesfully" });
       })
       .catch((error) => {
@@ -97,7 +97,7 @@ export class MemberController {
       });
   }
 
-  public async getById(req: Request, res: Response): Promise<any> {
+  public async getById(req: Request, res: Response): Promise<Response | void> {
     const [error, getMemberByIdDTO] = GetMemberByIdDTO.create({
       id: req.params.id,
     });
@@ -129,7 +129,10 @@ export class MemberController {
       });
   }
 
-  public async initialize(req: Request, res: Response): Promise<any> {
+  public async initialize(
+    req: Request,
+    res: Response
+  ): Promise<Response | void> {
     const [error, initializeMembersDTO] = InitializeMembersDTO.create({
       members: req.body,
     });

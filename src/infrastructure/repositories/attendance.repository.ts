@@ -4,7 +4,6 @@ import {
   UpdateAttendanceDTO,
   DeleteAttendanceDTO,
   GetAttendanceByDateDTO,
-  GetDistinctDatesDTO,
 } from "../../domain/dtos/attendance";
 import { AttendanceDataSource } from "../../domain/datasources/attendance.datasource";
 import { AttendanceEntity } from "../../domain/entities/attendance/attendance.entity";

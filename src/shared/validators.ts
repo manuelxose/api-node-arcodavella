@@ -18,7 +18,7 @@ export class Validators {
    */
   static isValidPassword(password: string): boolean {
     const minLength = 8;
-    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&_\-\.]{8,}$/;
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*?&_\-.]{8,}$/;
     console.log("password: ", password);
     console.log("passwordRegex: ", passwordRegex);
     console.log("passwordRegex.test(password): ", passwordRegex.test(password));
@@ -34,7 +34,7 @@ export class Validators {
    * @param validRoles - Lista de roles válidos permitidos.
    * @returns True si el rol es válido, false de lo contrario.
    */
-  static isValidUserRole(role: any, validRoles: any[]): boolean {
+  static isValidUserRole(role: string, validRoles: string[]): boolean {
     return validRoles.includes(role);
   }
 
@@ -47,20 +47,24 @@ export class Validators {
     const usernameRegex = /^[a-zA-Z0-9_]{3,16}$/;
     return usernameRegex.test(username);
   }
-
   /**
    * Verifica si un valor no está vacío.
    * @param value - El valor a verificar.
    * @returns True si el valor no está vacío, false de lo contrario.
    */
-  static isNotEmpty(value: any): boolean {
-    if (value === undefined || value === null) {
-      return false;
+  static isNotEmpty(value: string | number | undefined): boolean {
+    if (typeof value === "number") {
+      // Si el valor es un número, consideramos que no está vacío si no es NaN
+      return !isNaN(value);
     }
-    if (typeof value !== "string") {
-      value = String(value);
+
+    // Si el valor es una cadena, verificamos que no esté vacía después de trim
+    if (typeof value === "string") {
+      return value.trim().length > 0;
     }
-    return value.trim().length > 0;
+
+    // Si el valor es de cualquier otro tipo o es null/undefined, consideramos que está vacío
+    return false;
   }
 
   /**
@@ -165,9 +169,10 @@ export class Validators {
     try {
       new URL(url);
       return true;
-    } catch (_) {
-      return false;
+    } catch (error: unknown) {
+      if (error instanceof Error) return false;
     }
+    return false;
   }
 
   /**
@@ -218,7 +223,7 @@ export class Validators {
     }
 
     const base64Pattern =
-      /^(?:[A-Za-z0-9+\/]{4})*?(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?$/;
+      /^(?:[A-Za-z0-9+/]{4})*?(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/;
     return base64Pattern.test(str) && str.length % 4 === 0;
   }
 }

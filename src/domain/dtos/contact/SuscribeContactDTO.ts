@@ -17,7 +17,9 @@ export class SubscribeContactDTO {
    * @param data - Objeto con los datos del contacto.
    * @returns [Error, SubscribeContactDTO | null]
    */
-  static create(data: any): [Error | null, SubscribeContactDTO | null] {
+  static create(
+    data: SubscribeContactDTO
+  ): [Error | null, SubscribeContactDTO | null] {
     if (!data.email || !data.name) {
       return [CustomError.badRequest("Email y nombre son requeridos"), null];
     }

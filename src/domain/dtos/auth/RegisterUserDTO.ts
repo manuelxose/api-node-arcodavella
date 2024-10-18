@@ -12,7 +12,7 @@ export class RegisterUserDTO {
     this.role = UserRoles.USER; // El rol siempre se asigna como User
   }
 
-  static create(data: any): [Error | null, RegisterUserDTO | null] {
+  static create(data: RegisterUserDTO): [Error | null, RegisterUserDTO | null] {
     const { email, password } = data;
 
     if (!email || !Validators.isValidEmail(email)) {

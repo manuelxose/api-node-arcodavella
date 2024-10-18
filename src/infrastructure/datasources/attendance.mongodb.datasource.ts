@@ -3,10 +3,8 @@ import {
   UpdateAttendanceDTO,
   DeleteAttendanceDTO,
   GetAttendanceByDateDTO,
-  GetDistinctDatesDTO,
 } from "../../domain/dtos/attendance";
 import { CustomError } from "../../domain/errors";
-import logger from "../../core/adapters/logger";
 import AttendanceModel from "../../data/mongodb/models/attendance.model";
 import { AttendanceDataSource } from "../../domain/datasources/attendance.datasource";
 import { AttendanceEntity } from "../../domain/entities/attendance/attendance.entity";

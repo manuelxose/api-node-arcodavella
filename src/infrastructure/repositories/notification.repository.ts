@@ -6,7 +6,6 @@ import {
   UpdateNotificationDTO,
   DeleteNotificationDTO,
   GetNotificationByIdDTO,
-  GetAllNotificationsDTO,
 } from "../../domain/dtos/notification";
 import { NotificationEntity } from "../../domain/entities/notification/NotificationEntity";
 import { NotificationRepository } from "../../domain/repositories";

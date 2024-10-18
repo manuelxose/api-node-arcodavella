@@ -1,6 +1,5 @@
 // src/domain/datasources/NotificationDataSource.ts
 
-import { SendBulkEmailDTO } from "../dtos/email";
 import {
   CreateNotificationDTO,
   DeleteNotificationDTO,

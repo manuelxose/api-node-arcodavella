@@ -100,8 +100,8 @@ userSchema.pre<IUser>("save", async function (next) {
   try {
     this.updatedAt = new Date();
     next();
-  } catch (err: any) {
-    next(err);
+  } catch (err: unknown) {
+    if (err instanceof Error) next(err);
   }
 });
 

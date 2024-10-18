@@ -2,6 +2,7 @@ import { AuthRepository } from "../../../domain/repositories";
 import { ChangePasswordDTO, GetActiveUserDTO } from "../../../domain/dtos/auth";
 import { CustomError } from "../../../domain/errors";
 import { BcryptAdapter, JwtAdapter } from "../../../core/adapters";
+import logger from "../../../core/adapters/logger";
 
 interface ResponsePass {
   success: boolean;
@@ -12,7 +13,7 @@ export class ChangePassword {
   constructor(private authRepository: AuthRepository) {}
 
   async execute(changePasswordDTO: ChangePasswordDTO): Promise<ResponsePass> {
-    const { token, newPassword } = changePasswordDTO;
+    const { token } = changePasswordDTO;
 
     // Decodificar el token para obtener el userId
     let userId: string;
@@ -22,7 +23,8 @@ export class ChangePassword {
       );
       userId = decodedToken.userId;
       console.log("id decodificado: ", userId);
-    } catch (error) {
+    } catch (error: unknown) {
+      logger.error("Invalid or expired Token", error);
       throw CustomError.unauthorized("Invalid or expired token.");
     }
 
@@ -52,7 +54,13 @@ export class ChangePassword {
         success: true,
         message: "Password changed successfully.",
       };
-    } catch (error) {
+    } catch (error: unknown) {
+      if (error instanceof Error)
+        logger.error(
+          "Failed to change password. Please try again.",
+          error.message
+        );
+
       throw CustomError.internal(
         "Failed to change password. Please try again."
       );

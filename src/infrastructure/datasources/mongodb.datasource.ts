@@ -20,6 +20,7 @@ import UserModel, {
 import { CustomError } from "../../domain/errors";
 import { UserMapper } from "../mapppers";
 import { UserRoles } from "../../domain/enums";
+import logger from "../../core/adapters/logger";
 
 export class MongoAuthDataSource implements AuthDataSource {
   // Login a user using their credentials
@@ -64,8 +65,9 @@ export class MongoAuthDataSource implements AuthDataSource {
   }
 
   // Reset the password of a user
-  async resetPassword(resetPasswordDTO: ResetPasswordDTO): Promise<void> {
+  async resetPassword(_resetPasswordDTO: ResetPasswordDTO): Promise<void> {
     // Implementar lógica de restablecimiento de contraseña aquí si es necesario
+    logger.info("Funcion no implementada", _resetPasswordDTO);
   }
 
   // Update the password of a user
@@ -112,13 +114,13 @@ export class MongoAuthDataSource implements AuthDataSource {
       }> = {};
 
       // Helper function para verificar si un campo ha cambiado y necesita actualización
-      const addIfChanged = <K extends keyof typeof updateFields>(
+      const addIfChanged = <K extends keyof typeof updateFields, V>(
         field: K,
-        newValue: any,
-        oldValue: any
+        newValue: V,
+        oldValue: V
       ) => {
         if (newValue !== undefined && newValue !== oldValue) {
-          updateFields[field] = newValue;
+          updateFields[field] = newValue as (typeof updateFields)[K];
         }
       };
 

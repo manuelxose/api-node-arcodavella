@@ -21,11 +21,13 @@ export class AppRoutes {
 
     console.log("Files found:", routeFiles); // Log para verificar los archivos encontrados
 
-    routeFiles.forEach((file) => {
+    routeFiles.forEach(async (file) => {
       try {
         const routePath = path.join(PATH_ROUTER, file);
         console.log(`Attempting to load: ${routePath}`); // Log para cada archivo que se intenta cargar
-        const routeModule = require(routePath);
+
+        // Usar import() dinámico en lugar de require()
+        const routeModule = await import(routePath);
 
         // Asegúrate de usar la exportación correcta
         const route = routeModule.default || routeModule.router || routeModule;
@@ -39,8 +41,8 @@ export class AppRoutes {
         } else {
           console.warn(`WARNING: The file ${file} does not export a router.`);
         }
-      } catch (error: any) {
-        console.log("ERROR EN EL LOADER: ", error.message);
+      } catch (error) {
+        console.error(`Error loading route: ${file}`, error);
       }
     });
 

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // src/interface/controllers/contact.controller.ts
 
 import { Request, Response, NextFunction } from "express";

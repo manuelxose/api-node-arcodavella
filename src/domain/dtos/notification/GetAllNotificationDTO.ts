@@ -15,7 +15,7 @@ export class GetAllNotificationsDTO {
     public readonly createdAt: Date,
     public readonly updatedAt: Date,
     public readonly fieldToUpdate?: string, // Campo opcional
-    public readonly newValue?: any // Campo opcional
+    public readonly newValue?: string // Campo opcional
   ) {}
 
   // Método de fábrica para crear un DTO con validación de campos
@@ -29,7 +29,7 @@ export class GetAllNotificationsDTO {
     createdAt: Date;
     updatedAt: Date;
     fieldToUpdate?: string;
-    newValue?: any;
+    newValue?: string;
   }): [CustomError | null, GetAllNotificationsDTO | null] {
     const validationError = this.validateFields(data);
     if (validationError) {
@@ -64,7 +64,7 @@ export class GetAllNotificationsDTO {
     createdAt: Date;
     updatedAt: Date;
     fieldToUpdate?: string;
-    newValue?: any;
+    newValue?: string;
   }): CustomError | null {
     if (!Validators.isNotEmpty(data.id))
       return CustomError.badRequest("ID is required");

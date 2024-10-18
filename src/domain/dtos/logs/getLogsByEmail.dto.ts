@@ -17,7 +17,7 @@ export class GetLogsByEmailDTO {
     const errors: { [key: string]: string } = {};
 
     // Validar que el email esté presente y no esté vacío
-    if (!Validators.isNotEmpty(data.email)) {
+    if (data.email === undefined || !Validators.isNotEmpty(data.email)) {
       errors.email = "Email is required.";
     } else if (!Validators.isValidEmail(data.email!)) {
       errors.email = "Invalid email format.";

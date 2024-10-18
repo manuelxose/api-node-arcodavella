@@ -12,7 +12,7 @@ interface NotificationEntityProps {
   summary: string;
   status: StatusCodes;
   fieldToUpdate?: string; // Campo solicitado para modificación (opcional)
-  newValue?: any; // El nuevo valor propuesto (opcional)
+  newValue?: string; // El nuevo valor propuesto (opcional)
   createdAt: Date;
   updatedAt: Date;
 }
@@ -27,7 +27,7 @@ export class NotificationEntity {
   private _summary: string;
   private _status: StatusCodes;
   private _fieldToUpdate?: string; // Campo solicitado para modificación
-  private _newValue?: any; // Nuevo valor propuesto
+  private _newValue?: string; // Nuevo valor propuesto
   private _createdAt: Date;
   private _updatedAt: Date;
 
@@ -83,7 +83,7 @@ export class NotificationEntity {
     return this._fieldToUpdate;
   }
 
-  get newValue(): any | undefined {
+  get newValue(): string | undefined {
     return this._newValue;
   }
 
