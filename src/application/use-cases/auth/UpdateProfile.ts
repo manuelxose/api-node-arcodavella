@@ -12,8 +12,7 @@ export class UpdateProfile {
   async execute(updateProfileDTO: UpdateProfileDTO): Promise<void> {
     console.log("Actualización de perfil: ", updateProfileDTO);
 
-    // Primero, obtener el usuario por el ID para obtener el email
-
+    // Obtener el usuario por el ID para obtener el email
     const [error, activeUserDTO] = GetActiveUserDTO.create({
       userId: updateProfileDTO.id,
     });
@@ -28,7 +27,7 @@ export class UpdateProfile {
       );
     }
 
-    // Ahora, crear el DTO para obtener el miembro usando el email del usuario
+    // Crear el DTO para obtener el miembro usando el email del usuario
     const [emailError, memberDTO] = GetMemberByEmailDTO.create(user.email);
     if (emailError) {
       throw CustomError.badRequest(
@@ -44,10 +43,13 @@ export class UpdateProfile {
       );
     }
 
-    // Excluir el campo email y asignar el resto de los datos del miembro al DTO de actualización
-    const { ...restMemberData } = member;
+    // Use a self-invoking function to omit 'id' and 'email'
+    const restMemberData = (() => {
+      const { id, email, ...rest } = member;
+      return rest;
+    })();
 
-    // Unificar los datos del miembro con el updateProfileDTO
+    // Unificar los datos del miembro con el updateProfileDTO sin sobrescribir el 'id' del usuario
     Object.assign(updateProfileDTO, restMemberData);
 
     console.log(

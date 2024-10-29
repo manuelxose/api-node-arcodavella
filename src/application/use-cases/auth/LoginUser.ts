@@ -28,34 +28,38 @@ export class LoginUser {
     });
 
     // Desestructurar las propiedades necesarias del usuario
-    const {
-      id,
-      role,
-      email,
-      memberNumber = "",
-      status,
-      name = "",
-      phone = "",
-      dni = "",
-      accountNumber = "",
-      updatedAt,
-    } = user;
+    // const {
+    //   id,
+    //   role,
+    //   email,
+    //   memberNumber = "",
+    //   status,
+    //   name = "",
+    //   phone = "",
+    //   dni = "",
+    //   accountNumber = "",
+    //   updatedAt,
+    // } = user;
 
-    // Devolver el objeto de respuesta con los datos desestructurados y el token
-    return {
+    const response: LoginResponse = {
       user: {
-        email,
-        role,
-        id,
-        memberNumber,
-        status,
-        name,
-        phone,
-        dni,
-        accountNumber,
-        updatedAt,
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+        dni: user.dni,
+        accountNumber: user.accountNumber,
+        memberNumber: user.memberNumber,
+        status: user.status,
+        updatedAt: user.updatedAt,
+        role: user.role,
       },
       token,
     };
+
+    console.log("la respuesta: ", response);
+
+    // Devolver el objeto de respuesta con los datos desestructurados y el token
+    return response;
   }
 }

@@ -8,6 +8,7 @@ import {
   SendEmailDTO,
   SendBulkEmailDTO,
 } from "../../domain/dtos/email";
+import { env } from "../../core/config/env";
 
 /**
  * Implementación concreta de EmailRepository utilizando un EmailDataSource.
@@ -19,7 +20,7 @@ export class NodemailerEmailRepository implements EmailRepository {
   constructor(private readonly emailDataSource: EmailDataSource) {}
 
   async sendPasswordResetEmail(dto: SendPasswordResetEmailDTO): Promise<void> {
-    const resetLink = `http://localhost:4200/auth/new-password?token=${dto.resetToken}`;
+    const resetLink = `${env.frontendUrl}/auth/new-password?token=${dto.resetToken}`;
 
     const emailContent = `
     <!DOCTYPE html>

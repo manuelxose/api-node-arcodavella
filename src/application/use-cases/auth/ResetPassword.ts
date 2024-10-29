@@ -25,7 +25,7 @@ export class ResetPassword {
     }
 
     // Hash la nueva contraseña utilizando el método estático
-    const hashedPassword = BcryptAdapter.hash(dto!.newPassword);
+    const hashedPassword = await BcryptAdapter.hash(dto!.newPassword, 10);
 
     // Crear el DTO para actualizar la contraseña
     const [updateError, updatePasswordDTO] = UpdatePasswordDTO.create({

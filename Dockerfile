@@ -31,6 +31,9 @@ RUN npm install --production
 # Copiar el código compilado desde el stage de build
 COPY --from=builder /usr/src/app/dist ./dist
 
+# Copiar archivos de configuración necesarios (si existen)
+COPY --from=builder /usr/src/app/.env ./
+
 # Exponer el puerto que usa tu aplicación (ajusta si es necesario)
 EXPOSE 3000
 

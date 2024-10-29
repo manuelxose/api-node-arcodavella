@@ -37,6 +37,9 @@ function getEnvVarNumberOptional(
 }
 
 export const env = {
+  //URL del frontend
+  frontendUrl: getEnvVar("FRONT_URL"),
+
   jwtSecret: getEnvVarOptional("JWT_SECRET", "defaultsecret"),
   mongodbUri: getEnvVarOptional(
     "MONGO_URL",

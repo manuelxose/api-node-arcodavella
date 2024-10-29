@@ -35,7 +35,10 @@ export class MongoAuthDataSource implements AuthDataSource {
       throw CustomError.badRequest("Invalid credentials: Incorrect password");
     }
 
-    return UserMapper.toEntity(user); // Usa el UserMapper para convertir a entidad
+    console.log("Devuelve mapeado o klk", user);
+
+    const userMapped = UserMapper.toEntity(user); // Usa el UserMapper para convertir a entidad
+    return userMapped;
   }
 
   // Register a new user in the system
@@ -70,14 +73,39 @@ export class MongoAuthDataSource implements AuthDataSource {
     logger.info("Funcion no implementada", _resetPasswordDTO);
   }
 
-  // Update the password of a user
   async updatePassword(
     changePasswordDTO: UpdatePasswordDTO
   ): Promise<UserEntity> {
     const user = await this.findUserById(changePasswordDTO.userId);
-    user.password = await bcrypt.hash(changePasswordDTO.newPassword, 10);
-    await user.save();
-    return UserMapper.toEntity(user); // Usa el UserMapper para convertir a entidad
+
+    if (!user) {
+      throw CustomError.badRequest("User not found");
+    }
+
+    // Ensure the new password is not the same as the current password
+    const isPasswordSame = await bcrypt.compare(
+      changePasswordDTO.newPassword,
+      user.password
+    );
+
+    if (isPasswordSame) {
+      throw CustomError.badRequest(
+        "New password cannot be the same as the old one"
+      );
+    }
+
+    // Update the password in the database
+    const result = await UserModel.findOneAndUpdate(
+      { _id: user._id },
+      { $set: { password: changePasswordDTO.newPassword } },
+      { new: true }
+    );
+
+    if (!result) {
+      throw CustomError.notFound("User not UPDATED");
+    }
+
+    return UserMapper.toEntity(result);
   }
 
   // Update user profile information

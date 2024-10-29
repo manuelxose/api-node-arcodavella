@@ -716,3 +716,63 @@
 2024-10-17 13:21:32 [ERROR]: Error procesando el correo: input.once is not a function 
 2024-10-17 13:21:32 [ERROR]: Error procesando el correo: input.once is not a function 
 2024-10-17 13:21:32 [ERROR]: Error procesando el correo: input.once is not a function 
+2024-10-18 20:00:26 [ERROR]: Token validation failed: jwt expired 
+2024-10-22 19:37:22 [ERROR]: Cast to ObjectId failed for value "login" (type string) at path "_id" for model "User" 
+2024-10-22 19:38:55 [ERROR]: Cast to ObjectId failed for value "login" (type string) at path "_id" for model "User" 
+2024-10-23 23:31:46 [ERROR]: request entity too large 
+2024-10-23 23:46:12 [ERROR]: incorrect header check 
+2024-10-23 23:53:51 [ERROR]: incorrect header check 
+2024-10-23 23:58:32 [ERROR]: incorrect header check 
+2024-10-24 10:19:19 [ERROR]: DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+ 
+2024-10-24 10:19:24 [ERROR]: DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+ 
+2024-10-24 10:19:35 [ERROR]: DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+ 
+2024-10-24 11:47:59 [ERROR]: undefined {
+  "errorResponse": {
+    "index": 0,
+    "code": 11000,
+    "errmsg": "E11000 duplicate key error collection: cluster0.members index: dni_1 dup key: { dni: \"53198877S\" }",
+    "keyPattern": {
+      "dni": 1
+    },
+    "keyValue": {
+      "dni": "53198877S"
+    }
+  },
+  "index": 0,
+  "code": 11000,
+  "keyPattern": {
+    "dni": 1
+  },
+  "keyValue": {
+    "dni": "53198877S"
+  }
+}
+2024-10-24 18:40:42 [ERROR]: DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+ 
+2024-10-24 18:40:43 [ERROR]: DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+ 
+2024-10-24 18:40:44 [ERROR]: DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+ 
+2024-10-24 18:40:44 [ERROR]: DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+ 
+2024-10-24 18:40:44 [ERROR]: DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+ 
+2024-10-24 18:40:44 [ERROR]: DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+ 
+2024-10-24 18:41:12 [ERROR]: DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+ 
+2024-10-24 18:41:13 [ERROR]: DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+ 
+2024-10-24 18:41:14 [ERROR]: DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+ 
+2024-10-24 18:41:14 [ERROR]: DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+ 
+2024-10-24 18:41:14 [ERROR]: DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+ 
+2024-10-24 18:41:50 [ERROR]: DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+ 
+2024-10-24 18:57:40 [ERROR]: DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+ 

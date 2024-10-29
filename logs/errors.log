@@ -93,3 +93,42 @@
 2024-10-16T18:20:41.093Z - Cast to ObjectId failed for value "all" (type string) at path "_id" for model "User"
 2024-10-16T18:21:43.673Z - Cast to ObjectId failed for value "all" (type string) at path "_id" for model "User"
 2024-10-16T18:22:29.517Z - Cast to ObjectId failed for value "all" (type string) at path "_id" for model "User"
+2024-10-18T18:00:26.072Z - Token validation failed: jwt expired
+2024-10-22T17:37:22.632Z - Cast to ObjectId failed for value "login" (type string) at path "_id" for model "User"
+2024-10-22T17:38:55.767Z - Cast to ObjectId failed for value "login" (type string) at path "_id" for model "User"
+2024-10-23T21:31:46.717Z - request entity too large
+2024-10-23T21:46:12.489Z - incorrect header check
+2024-10-23T21:53:51.976Z - incorrect header check
+2024-10-23T21:58:32.011Z - incorrect header check
+2024-10-24T08:19:19.278Z - DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+
+2024-10-24T08:19:24.474Z - DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+
+2024-10-24T08:19:35.494Z - DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+
+2024-10-24T16:40:42.040Z - DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+
+2024-10-24T16:40:43.152Z - DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+
+2024-10-24T16:40:44.286Z - DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+
+2024-10-24T16:40:44.482Z - DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+
+2024-10-24T16:40:44.653Z - DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+
+2024-10-24T16:40:44.869Z - DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+
+2024-10-24T16:41:12.087Z - DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+
+2024-10-24T16:41:13.198Z - DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+
+2024-10-24T16:41:14.317Z - DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+
+2024-10-24T16:41:14.517Z - DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+
+2024-10-24T16:41:14.679Z - DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+
+2024-10-24T16:41:50.489Z - DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+
+2024-10-24T16:57:40.913Z - DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+

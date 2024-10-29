@@ -10,6 +10,7 @@ export class GetActiveUser {
   ): Promise<UserEntity | null> {
     try {
       const user = await this.authRepository.getActiveUser(getActiveUserDTO);
+      console.log("que pasa elmano");
       if (user && user.role !== undefined) {
         // Verifica que el usuario tiene un rol definido (indicador de que está activo)
         return user;
