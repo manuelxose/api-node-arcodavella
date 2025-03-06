@@ -776,3 +776,8 @@
  
 2024-10-24 18:57:40 [ERROR]: DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
  
+2024-10-29 23:20:51 [ERROR]: No permitido por CORS 
+2024-10-29 23:21:10 [ERROR]: No permitido por CORS 
+2024-10-30 11:37:01 [ERROR]: 4C8D0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+ 
+2024-10-30 11:38:41 [ERROR]: Topology is closed 

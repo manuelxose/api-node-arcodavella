@@ -20,7 +20,13 @@ export class NodemailerEmailRepository implements EmailRepository {
   constructor(private readonly emailDataSource: EmailDataSource) {}
 
   async sendPasswordResetEmail(dto: SendPasswordResetEmailDTO): Promise<void> {
-    const resetLink = `${env.frontendUrl}/auth/new-password?token=${dto.resetToken}`;
+    let resetLink = ""; // Usamos 'let' ya que el valor va a cambiar
+
+    if (process.env.NODE_ENV === "production") {
+      resetLink = `${env.frontendUrl}/auth/new-password?token=${dto.resetToken}`;
+    } else {
+      resetLink = `http://localhost:4200/auth/new-password?token=${dto.resetToken}`;
+    }
 
     const emailContent = `
     <!DOCTYPE html>

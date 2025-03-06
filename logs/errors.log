@@ -132,3 +132,7 @@
 
 2024-10-24T16:57:40.913Z - DC150000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
 
+2024-10-29T22:20:51.846Z - No permitido por CORS
+2024-10-29T22:21:10.929Z - No permitido por CORS
+2024-10-30T10:37:01.538Z - 4C8D0000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:c:\ws\deps\openssl\openssl\ssl\record\rec_layer_s3.c:1586:SSL alert number 80
+

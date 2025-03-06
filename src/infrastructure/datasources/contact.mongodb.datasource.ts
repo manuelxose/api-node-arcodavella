@@ -7,7 +7,7 @@ import { ContactoEntity } from "../../domain/entities/contact/ContactEntity";
 import { CustomError } from "../../domain/errors";
 import { ContactoMapper } from "../mapppers/contact.mapper";
 
-export class ContactMongodataSource extends ContactoDataSource {
+export class ContactMongodataSource implements ContactoDataSource {
   // Crear un nuevo contacto
   async create(contacto: ContactoEntity): Promise<ContactoEntity> {
     try {

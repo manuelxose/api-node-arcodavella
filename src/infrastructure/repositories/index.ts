@@ -3,3 +3,7 @@ export * from "./sendEmal.repositoy";
 export * from "./member.repository";
 export * from "./notification.repository";
 export * from "./log.repositoy";
+export * from "./attendance.repository";
+export * from "./contact.repository";
+export * from "./document.repository";
+export * from "./storage.repository";
